@@ -1,0 +1,8 @@
+# First line is the header fields for columns and is mandatory.
+# Regular expressions are supported in all fields except the first.
+# Last field supports variable length command completion.
+# abc[[xyz]] is expanded to abc(x(y(z)?)?)?, regexp inside [[]] is not supported
+#
+Template, Hostname, Platform, Command
+juniper_show_version.template, .*, juniper, sh[[ow]] ver[[sion]]
+juniper_show_interfaces.template, .*, juniper, sh[[ow]] int[[erfaces]] ext[[ensive]]
