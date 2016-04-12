@@ -6,3 +6,4 @@
 Template, Hostname, Platform, Command
 juniper_show_version.template, .*, juniper, sh[[ow]] ver[[sion]]
 juniper_show_interfaces.template, .*, juniper, sh[[ow]] int[[erfaces]] ext[[ensive]]
+fortinet_diag_hardware_sysinfo_memory.template, .*, fortinet, diag hardware sysinfo memory

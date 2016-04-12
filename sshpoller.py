@@ -4,6 +4,7 @@
 # Import standard python modules
 import argparse
 from getpass import getpass
+import csv
 import json
 import logging
 import os
@@ -41,6 +42,7 @@ class SSH_Poller:
     command_list = []
     data_list = []
     prompt = ''
+    parser_mode = ''
     sock = ConnectHandler
 
     def __init__(self, task):
@@ -48,6 +50,7 @@ class SSH_Poller:
         self.username = task['username']
         self.password = task['password']
         self.device_type = task['device_type']
+        self.parser_mode = task['parser_mode']
         
         for command in task['commands']:
             if len(command.split(':')) == 1:
@@ -88,6 +91,54 @@ class SSH_Poller:
         self.sock.disconnect()
         logging.debug('Connection cleaned-up')
 
+    def parse_fsm(self, result, command):
+        """ Parse command output through TextFSM """
+
+        result = ''.join(result)
+        cli_table = clitable.CliTable(index_file, template_dir)
+        attrs = {'Command': command['command'], 'Platform': self.device_type}
+
+        try:
+            cli_table.ParseCmd(result, attrs)
+        except clitable.CliTableError as e:
+            module.fail_json(msg='parsing error',
+                             error=str(e))
+
+        data = {}
+        data['tag'] = command['tag']
+        data['command'] = command['command']
+        data['fields'] = clitable_to_dict(cli_table)
+
+        # Convert values to float if possible
+        data_float = []
+
+        for i in data['fields']:
+            i = dict((k, float_if_possible(v)) for (k, v) in i.items())
+            data_float.append(i)
+            data['fields'] = data_float          
+
+        self.data_list.append(data)
+
+    def parse_csv(self, result, command):
+        """ Parse command output as csv """
+        
+        keys = result.split("\n")[0].split(',')
+        values =  result.split("\n")[1].split(',')
+
+        if len(keys) != len(values):
+            logging.ERROR('CSV format invalid')
+            return False
+
+        data = {}
+        data['tag'] = command['tag']
+        data['command'] = command['command']
+        data['fields'] = []
+
+        for i in range(0, len(keys) - 1):
+            data['fields'].append({keys[i] : float_if_possible(values[i])})
+
+        self.data_list.append(data)
+
     def send_commands(self):
         """ Send all commands in task
             Stores all parsed output in self.data_list
@@ -96,36 +147,15 @@ class SSH_Poller:
         for command in self.command_list:
             logging.debug('Sending command: %s' % command['command'])
             result = self.sock.send_command(command['command'])
-            result_raw = ''.join(result)
-            
-            cli_table = clitable.CliTable(index_file, template_dir)
-            attrs = {'Command': command['command'], 'Platform': self.device_type}
-
-            try:
-                cli_table.ParseCmd(result_raw, attrs)
-            except CliTableError as e:
-                module.fail_json(msg='parsing error',
-                                 error=str(e))
-
-            data = {}
-            data['tag'] = command['tag']
-            data['command'] = command['command']
-            data['fields'] = clitable_to_dict(cli_table)
-
-            # Convert values to float if possible
-            data_float = []
-
-            for i in data['fields']:
-                i = dict((k, float_if_possible(v)) for (k, v) in i.items())
-                data_float.append(i)
-                data['fields'] = data_float          
-
-            self.data_list.append(data)
+            if self.parser_mode == 'fsm':
+                self.parse_fsm(result, command)
+            elif self.parser_mode == 'csv':
+                self.parse_csv(result, command)
 
     def output_json(self):
         """ Return results in JSON format """
 
-        print json.dumps(self.data_list[0][0], indent=4)
+        print json.dumps(self.data_list, indent=2)
 
     def output_line(self):
         """ Return results in line protocol format """
@@ -228,7 +258,6 @@ def worker(input_queue, output_queue):
             poller.output_line()
         elif task['mode'] == 'influx':
             poller.output_influxdb()
-        poller.disconnect()
     else:
         return
 
@@ -243,6 +272,7 @@ def main(args, loglevel):
     password = args.password
     mode = args.mode                # Valid choices: json, line, influx
     device_type = args.device_type  # Valid choices documented in netmiko
+    parser_mode = args.parse        # Valid choices : fsm, csv
     commands = args.commands
     num_threads = args.threads
 
@@ -262,6 +292,7 @@ def main(args, loglevel):
         'password': password,
         'mode': mode,
         'device_type': device_type,
+        'parser_mode': parser_mode,
         'commands': commands    
     }
     input_queue.put(task)
@@ -298,12 +329,13 @@ if __name__ == '__main__':
     parser.add_argument(
                         "-d",
                         "--device_type",
-                        help = "Device type",
-                        default = 'generic')
+                        help = "Device type (FSM mode only)",
+                        default = 'linux')
     parser.add_argument(
                         "-m",
                         "--mode",
-                        help = "Polling mode",
+                        help = "Output mode (default = json)",
+                        choices = ['json', 'line', 'influx'],
                         default = 'json')
     parser.add_argument(
                         "-u",
@@ -313,6 +345,13 @@ if __name__ == '__main__':
                         "-p",
                         "--password",
                         help = "SSH password")
+    parser.add_argument(
+                        "-P",
+                        "--parse",
+                        help = "Parser mode (default = fsm)",
+                        choices = ['fsm', 'csv'],
+                        default = 'fsm'
+                        )
     parser.add_argument(
                         "-t",
                         "--threads",

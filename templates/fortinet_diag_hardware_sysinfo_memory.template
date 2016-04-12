@@ -1,0 +1,30 @@
+Value MEM_TOTAL (\d+)
+Value MEM_FREE (\d+)
+Value MEM_SHARED (\d+)
+Value MEM_BUFFERS (\d+)
+Value MEM_CACHED (\d+)
+Value MEM_SWAP_CACHED (\d+)
+Value MEM_ACTIVE (\d+)
+Value MEM_INACTIVE (\d+)
+Value MEM_HIGH_TOTAL (\d+)
+Value MEM_HIGH_FREE (\d+)
+Value MEM_LOW_TOTAL (\d+)
+Value MEM_LOW_FREE (\d+)
+Value MEM_SWAP_TOTAL (\d+)
+Value MEM_SWAP_FREE (\d+)
+
+Start
+  ^MemTotal:\s+${MEM_TOTAL}
+  ^MemFree:\s+${MEM_FREE}
+  ^MemShared:\s+${MEM_SHARED}
+  ^Buffers:\s+${MEM_BUFFERS}
+  ^Cached:\s+${MEM_CACHED}
+  ^SwapCached:\s+${MEM_SWAP_CACHED}
+  ^Active:\s+${MEM_ACTIVE}
+  ^Inactive:\s+${MEM_INACTIVE}
+  ^HighTotal:\s+${MEM_HIGH_TOTAL}
+  ^HighFree:\s+${MEM_HIGH_FREE}
+  ^LowTotal:\s+${MEM_LOW_TOTAL}
+  ^LowFree:\s+${MEM_LOW_FREE}
+  ^SwapTotal:\s+${MEM_SWAP_TOTAL}
+  ^SwapFree:\s+${MEM_SWAP_FREE}
