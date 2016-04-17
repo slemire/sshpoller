@@ -10,6 +10,7 @@ import logging
 import os
 import re
 import sys
+from time import sleep
 from multiprocessing import Process, Queue
 
 # TextFSM module : https://github.com/google/textfsm
@@ -45,6 +46,7 @@ class SSH_Poller:
     data_list = []
     prompt = ''
     parser_mode = ''
+    interval = ''
     sock = ConnectHandler
 
     def __init__(self, task):
@@ -61,6 +63,9 @@ class SSH_Poller:
             # Command contains tags attribute
             elif len(command.split(':')) == 2:
                 self.command_list.append({'command':command.split(':')[0], 'tag':command.split(':')[1]})
+
+    def get_datalist(self):
+        return data_list
 
     def connect(self):
         """ Connects SSH session """
@@ -162,7 +167,7 @@ class SSH_Poller:
     def output_json(self):
         """ Return results in JSON format """
 
-        print json.dumps(self.data_list, indent=2)
+        print(json.dumps(self.data_list, indent=2))
 
     def output_line(self):
         """ Return results in line protocol format """
@@ -257,13 +262,18 @@ def worker(input_queue, output_queue):
 
     poller = SSH_Poller(task)
     if poller.connect():
-        poller.send_commands()
         if task['mode'] == 'json':
+            poller.send_commands()
             poller.output_json()
         elif task['mode'] == 'line':
+            poller.send_commands()
             poller.output_line()
         elif task['mode'] == 'influx':
-            poller.output_influxdb()
+            logging.info('InfluxDB mode selected, polling every %s seconds' % task['interval'])
+            while True:
+                poller.send_commands()
+                poller.output_influxdb()
+                sleep(task['interval'])
     else:
         return
 
@@ -281,6 +291,7 @@ def main(args, loglevel):
     parser_mode = args.parse        # Valid choices : fsm, csv
     commands = args.commands
     num_threads = args.threads
+    interval = args.interval
 
     # Ask for credentials if not passed from CLI args
     if not username:
@@ -299,7 +310,8 @@ def main(args, loglevel):
         'mode': mode,
         'device_type': device_type,
         'parser_mode': parser_mode,
-        'commands': commands    
+        'commands': commands,
+        'interval': interval    
     }
     input_queue.put(task)
     logging.debug('Added task to the queue: %s' % task)
@@ -344,6 +356,12 @@ if __name__ == '__main__':
                         choices = ['json', 'line', 'influx'],
                         default = 'json')
     parser.add_argument(
+                        "-i",
+                        "--interval",
+                        help = "Polling interval (sec)",
+                        default = 10
+                        )
+    parser.add_argument(
                         "-u",
                         "--username",
                         help = "SSH username")
@@ -363,6 +381,11 @@ if __name__ == '__main__':
                         "--threads",
                         help = "# of threads",
                         default = 1)
+    parser.add_argument(
+                        "-y",
+                        "--yaml",
+                        help = "YAML task list",
+                        )
     parser.add_argument(
                         "-v",
                         "--verbose",
