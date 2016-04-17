@@ -22,6 +22,8 @@ from netmiko import ConnectHandler, ssh_exception
 # InfluxDB module : https://github.com/influxdata/influxdb-python
 from influxdb import InfluxDBClient
 
+CSV_DELIMITER = ','
+
 # TESTFSM config settings
 index_file = 'index'
 template_dir = 'templates'
@@ -53,8 +55,10 @@ class SSH_Poller:
         self.parser_mode = task['parser_mode']
         
         for command in task['commands']:
+            # Command doesn't contain tags attribute
             if len(command.split(':')) == 1:
                 self.command_list.append({'command':command.split(':')[0], 'tag':''})
+            # Command contains tags attribute
             elif len(command.split(':')) == 2:
                 self.command_list.append({'command':command.split(':')[0], 'tag':command.split(':')[1]})
 
@@ -100,33 +104,35 @@ class SSH_Poller:
 
         try:
             cli_table.ParseCmd(result, attrs)
+
+            data = {}
+            data['tag'] = command['tag']
+            data['command'] = command['command']
+            data['fields'] = clitable_to_dict(cli_table)
+
+            # Convert values to float if possible
+            data_float = []
+
+            for i in data['fields']:
+                i = dict((k, float_if_possible(v)) for (k, v) in i.items())
+                data_float.append(i)
+                data['fields'] = data_float          
+
+            self.data_list.append(data)
+            return True
+
         except clitable.CliTableError as e:
-            module.fail_json(msg='parsing error',
-                             error=str(e))
-
-        data = {}
-        data['tag'] = command['tag']
-        data['command'] = command['command']
-        data['fields'] = clitable_to_dict(cli_table)
-
-        # Convert values to float if possible
-        data_float = []
-
-        for i in data['fields']:
-            i = dict((k, float_if_possible(v)) for (k, v) in i.items())
-            data_float.append(i)
-            data['fields'] = data_float          
-
-        self.data_list.append(data)
+            logging.error('FSM parsing error: %s' % str(e))
+            return False
 
     def parse_csv(self, result, command):
         """ Parse command output as csv """
         
-        keys = result.split("\n")[0].split(',')
-        values =  result.split("\n")[1].split(',')
+        keys = result.split("\n")[0].split(CSV_DELIMITER)
+        values =  result.split("\n")[1].split(CSV_DELIMITER)
 
         if len(keys) != len(values):
-            logging.ERROR('CSV format invalid')
+            logging.error('CSV format invalid')
             return False
 
         data = {}
@@ -138,6 +144,7 @@ class SSH_Poller:
             data['fields'].append({keys[i] : float_if_possible(values[i])})
 
         self.data_list.append(data)
+        return True
 
     def send_commands(self):
         """ Send all commands in task
@@ -188,14 +195,10 @@ class SSH_Poller:
         """ Writes data to the InfluxDB """
 
         for data in self.data_list:
-            for field in data:
-                
-                # Remove command key from the fields
-                # Just so we don't clutter each datapoint with useless stuff
-                measurement = field['command']
-                field.pop('command', None)
-                print field
+            measurement = data['command']
 
+            for field in data['fields']:                
+                
                 # Build JSON body for the REST API call
                 json_body = [
                     {
@@ -205,7 +208,10 @@ class SSH_Poller:
                         },
                         'fields': field
                     }
-                ]
+                ] 
+
+                if data['tag']:
+                    json_body[0]['tags'][data['tag']] = field[data['tag']]
                 
                 client = InfluxDBClient(db_host, db_port, db_user, db_password, db_name)
                 client.write_points(json_body)
