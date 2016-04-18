@@ -11,6 +11,7 @@ import os
 import re
 import sys
 from time import sleep
+import tempfile
 from multiprocessing import Process, Queue
 
 # TextFSM module : https://github.com/google/textfsm
@@ -43,6 +44,7 @@ class SSH_Poller:
     username = ''
     password = ''
     command_list = []
+    precommand_list = []
     data_list = []
     prompt = ''
     parser_mode = ''
@@ -55,6 +57,7 @@ class SSH_Poller:
         self.password = task['password']
         self.device_type = task['device_type']
         self.parser_mode = task['parser_mode']
+        self.precommand_list = task['precommands']
         
         for command in task['commands']:
             # Command doesn't contain tags attribute
@@ -81,6 +84,11 @@ class SSH_Poller:
 
             if self.prompt:
                 logging.debug('Prompt found: %s' % self.prompt)
+
+                # Send commands after login that won't be parsed
+                if self.precommand_list:
+                    for precommand in self.precommand_list:
+                         self.sock.send_command(precommand)
             else:
                 logging.debug('No prompt found')
 
@@ -132,23 +140,32 @@ class SSH_Poller:
 
     def parse_csv(self, result, command):
         """ Parse command output as csv """
+
+        mode = 0    # 0 = Header, 1 = Values
+        tmpfile = tempfile.TemporaryFile()
+
+        result_list = result.split("\n")
+        for i in result_list:
+            if mode == 0:
+                if len(i.split(',')) > 1:
+                    tmpfile.write(i+'\n')
+                    mode = 1
+            else:
+                if len(i.split(',')) > 1:
+                    tmpfile.write(i+'\n')
+
+        tmpfile.seek(0)
         
-        keys = result.split("\n")[0].split(CSV_DELIMITER)
-        values =  result.split("\n")[1].split(CSV_DELIMITER)
+        reader = csv.DictReader(tmpfile)
 
-        if len(keys) != len(values):
-            logging.error('CSV format invalid')
-            return False
+        for idx, row in enumerate(reader):
+            data = {}
+            data['tag'] = {'host': self.hostname, 'instance': idx}
+            data['command'] = command['command']
+            data['fields'] = row
 
-        data = {}
-        data['tag'] = command['tag']
-        data['command'] = command['command']
-        data['fields'] = []
+            self.data_list.append(data)
 
-        for i in range(0, len(keys) - 1):
-            data['fields'].append({keys[i] : float_if_possible(values[i])})
-
-        self.data_list.append(data)
         return True
 
     def send_commands(self):
@@ -159,6 +176,9 @@ class SSH_Poller:
         for command in self.command_list:
             logging.debug('Sending command: %s' % command['command'])
             result = self.sock.send_command(command['command'])
+            logging.debug('Output of command: %s' % command['command'])
+            logging.debug(result)
+
             if self.parser_mode == 'fsm':
                 self.parse_fsm(result, command)
             elif self.parser_mode == 'csv':
@@ -290,6 +310,7 @@ def main(args, loglevel):
     device_type = args.device_type  # Valid choices documented in netmiko
     parser_mode = args.parse        # Valid choices : fsm, csv
     commands = args.commands
+    precommands = args.precommands 
     num_threads = args.threads
     interval = args.interval
 
@@ -311,6 +332,7 @@ def main(args, loglevel):
         'device_type': device_type,
         'parser_mode': parser_mode,
         'commands': commands,
+        'precommands': precommands,
         'interval': interval    
     }
     input_queue.put(task)
@@ -344,6 +366,12 @@ if __name__ == '__main__':
                         nargs = "+",
                         help = "Command:Tags",
                         required = True)
+    parser.add_argument(
+                        "-C",
+                        "--precommands",
+                        nargs = "+",
+                        help = "Commands sent after connection (not parsed)",
+                        )
     parser.add_argument(
                         "-d",
                         "--device_type",
