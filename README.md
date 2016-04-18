@@ -83,3 +83,9 @@ show_interfaces_extensive,host="172.23.10.2" input_bytes=0.0,output_bytes=204235
 ``` 
 ./sshpoller.py -H 172.23.10.2 -m influx -u <username> -p <password> -c "show interfaces extensive:intf_name" -d juniper
 ```
+
+4.. Parse CSV command output from a device and write to InfluxDB. Some commands on F5 load-balancers support csv output so we don't need to craft a TextFSM template for it.
+
+```
+/sshpoller.py -H 172.23.10.30 -m influx -u <username> -p <password> -c "tmctl -c -d blade tmm/tcp4" -d f5_ltm -P csv
+```
