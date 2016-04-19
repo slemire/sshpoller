@@ -118,20 +118,15 @@ class SSH_Poller:
         try:
             cli_table.ParseCmd(result, attrs)
 
-            data = {}
-            data['tag'] = command['tag']
-            data['command'] = command['command']
-            data['fields'] = clitable_to_dict(cli_table)
+            for field in clitable_to_dict(cli_table):
 
-            # Convert values to float if possible
-            data_float = []
+                data = {}
+                data['tag'] = { 'host': self.hostname, 'command': command['tag'] }
+                data['command'] = command['command']
+                data['fields'] = dict((k, float_if_possible(v)) for (k, v) in field.items())
 
-            for i in data['fields']:
-                i = dict((k, float_if_possible(v)) for (k, v) in i.items())
-                data_float.append(i)
-                data['fields'] = data_float          
+                self.data_list.append(data)
 
-            self.data_list.append(data)
             return True
 
         except clitable.CliTableError as e:
@@ -141,29 +136,28 @@ class SSH_Poller:
     def parse_csv(self, result, command):
         """ Parse command output as csv """
 
-        mode = 0    # 0 = Header, 1 = Values
-        tmpfile = tempfile.TemporaryFile()
-
-        result_list = result.split("\n")
-        for i in result_list:
-            if mode == 0:
-                if len(i.split(',')) > 1:
-                    tmpfile.write(i+'\n')
-                    mode = 1
-            else:
-                if len(i.split(',')) > 1:
-                    tmpfile.write(i+'\n')
-
-        tmpfile.seek(0)
+        # CVS module needs to read from a file, let's create one
+        csvfile = tempfile.TemporaryFile()
         
-        reader = csv.DictReader(tmpfile)
+        result_list = result.split('\n')
+        
+        # Add lines until we find first empty line
+        for line in result_list:
+            if line != "":
+                csvfile.write("%s\n" % line)
+            else:
+                break
+        
+        csvfile.seek(0)
+        
+        reader = csv.DictReader(csvfile)
 
         for idx, row in enumerate(reader):
             data = {}
             data['tag'] = {'host': self.hostname, 'instance': idx}
             data['command'] = command['command']
+            row = dict((k, float_if_possible(v)) for (k, v) in row.items())            
             data['fields'] = row
-
             self.data_list.append(data)
 
         return True
@@ -218,28 +212,22 @@ class SSH_Poller:
 
     def output_influxdb(self):
         """ Writes data to the InfluxDB """
-
+                
         for data in self.data_list:
             measurement = data['command']
 
-            for field in data['fields']:                
-                
-                # Build JSON body for the REST API call
-                json_body = [
-                    {
-                        'measurement': measurement,
-                        'tags': {
-                            'host': self.hostname
-                        },
-                        'fields': field
-                    }
-                ] 
+            client = InfluxDBClient(db_host, db_port, db_user, db_password, db_name)
+             
+            # Build JSON body for the REST API call
+            json_body = [
+                {
+                    'measurement': measurement,
+                    'tags': data['tag'],
+                    'fields': data['fields']
+                }
+            ]
 
-                if data['tag']:
-                    json_body[0]['tags'][data['tag']] = field[data['tag']]
-                
-                client = InfluxDBClient(db_host, db_port, db_user, db_password, db_name)
-                client.write_points(json_body)
+            client.write_points(json_body)
 
 def quotes_in_str(value):
     """ Add quotes around value if it's a string """
@@ -260,7 +248,6 @@ def float_if_possible(value):
 
 def clitable_to_dict(cli_table):
     """Converts TextFSM cli_table object to list of dictionaries """
-
     objs = []
     for row in cli_table:
         temp_dict = {}
@@ -283,17 +270,23 @@ def worker(input_queue, output_queue):
     poller = SSH_Poller(task)
     if poller.connect():
         if task['mode'] == 'json':
+            logging.info('JSON mode selected')
             poller.send_commands()
             poller.output_json()
         elif task['mode'] == 'line':
+            logging.info('Line protocol mode selected')
             poller.send_commands()
             poller.output_line()
         elif task['mode'] == 'influx':
             logging.info('InfluxDB mode selected, polling every %s seconds' % task['interval'])
-            while True:
+            if task['interval'] == 0:
                 poller.send_commands()
                 poller.output_influxdb()
-                sleep(task['interval'])
+            else:
+                while True:
+                    poller.send_commands()
+                    poller.output_influxdb()
+                    sleep(float(task['interval']))
     else:
         return
 
@@ -387,7 +380,7 @@ if __name__ == '__main__':
                         "-i",
                         "--interval",
                         help = "Polling interval (sec)",
-                        default = 10
+                        default = 0
                         )
     parser.add_argument(
                         "-u",
