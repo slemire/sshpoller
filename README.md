@@ -10,7 +10,7 @@ This is a Python SSH screen scrapper that parses the output of commands sent to 
 
 ## Input
  * Command line args
- * YAML file (not implemented yet)
+ * YAML file
 
 ## Parsing mode
  * TextFSM (default)
@@ -24,10 +24,12 @@ This is a Python SSH screen scrapper that parses the output of commands sent to 
 ##Usage
 ```
 ./sshpoller.py -h
-usage: sshpoller.py [-h] -H HOSTNAME -c COMMANDS [COMMANDS ...]
-                    [-d DEVICE_TYPE] [-m {json,line,influx}] [-i INTERVAL]
-                    [-u USERNAME] [-p PASSWORD] [-P {fsm,csv}] [-t THREADS]
-                    [-y YAML] [-v]
+usage: sshpoller.py [-h] [-H HOSTNAME] [-c COMMANDS [COMMANDS ...]]
+                    [-C PRECOMMANDS [PRECOMMANDS ...]] [-d DEVICE_TYPE]
+                    [-m {json,line,influx}] [-i INTERVAL] [-u USERNAME]
+                    [-p PASSWORD] [-P {fsm,csv}] [-t THREADS] [-y YAML] [-v]
+
+Screen scrapping poller for InfluxDB/telegraf
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -35,6 +37,8 @@ optional arguments:
                         hostname
   -c COMMANDS [COMMANDS ...], --commands COMMANDS [COMMANDS ...]
                         Command:Tags
+  -C PRECOMMANDS [PRECOMMANDS ...], --precommands PRECOMMANDS [PRECOMMANDS ...]
+                        Commands sent after connection (not parsed)
   -d DEVICE_TYPE, --device_type DEVICE_TYPE
                         Device type (FSM mode only)
   -m {json,line,influx}, --mode {json,line,influx}
@@ -49,14 +53,13 @@ optional arguments:
                         Parser mode (default = fsm)
   -t THREADS, --threads THREADS
                         # of threads
-  -y YAML, --yaml YAML  YAML task list
+  -y YAML, --yaml YAML  YAML input file
   -v, --verbose         increase output verbosity
 ```
 
 ###Notes:
 
-* YAML task list mode is not implemented yet
-* Thread count is not useful yet, will be used for YAML mode
+* Thread count is set to the number of YAML tasks for the moment
 * The device_type has to match netmiko supported device types (see netmiko's doc)
 
 ##Examples:
