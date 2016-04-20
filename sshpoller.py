@@ -10,8 +10,9 @@ import logging
 import os
 import re
 import sys
-from time import sleep
+from time import sleep, time
 import tempfile
+import yaml
 from multiprocessing import Process, Queue
 
 # TextFSM module : https://github.com/google/textfsm
@@ -31,7 +32,7 @@ index_file = 'index'
 template_dir = 'templates'
 
 # INFLUXDBCLIENT config settings
-db_host = '127.0.0.1'
+db_host = 'localhost'
 db_port = 8086
 db_name = 'db_name'
 db_user = 'root'
@@ -118,13 +119,16 @@ class SSH_Poller:
         try:
             cli_table.ParseCmd(result, attrs)
 
+            # Timestamp precision is set to 'seconds'
+            timestamp = int(time())
+        
             for field in clitable_to_dict(cli_table):
 
                 data = {}
                 data['tag'] = { 'host': self.hostname, 'command': command['tag'] }
                 data['command'] = command['command']
                 data['fields'] = dict((k, float_if_possible(v)) for (k, v) in field.items())
-
+                data['timestamp'] = timestamp
                 self.data_list.append(data)
 
             return True
@@ -151,13 +155,17 @@ class SSH_Poller:
         csvfile.seek(0)
         
         reader = csv.DictReader(csvfile)
-
+        
+        # Timestamp precision is set to 'seconds'
+        timestamp = int(time())
+        
         for idx, row in enumerate(reader):
             data = {}
             data['tag'] = {'host': self.hostname, 'instance': idx}
             data['command'] = command['command']
             row = dict((k, float_if_possible(v)) for (k, v) in row.items())            
             data['fields'] = row
+            data['timestamp'] = timestamp
             self.data_list.append(data)
 
         return True
@@ -223,11 +231,12 @@ class SSH_Poller:
                 {
                     'measurement': measurement,
                     'tags': data['tag'],
-                    'fields': data['fields']
+                    'fields': data['fields'],
+                    'timestamp': data['timestamp']
                 }
-            ]
+            ]                      
 
-            client.write_points(json_body)
+            client.write_points(json_body, time_precision='s')
 
 def quotes_in_str(value):
     """ Add quotes around value if it's a string """
@@ -306,30 +315,66 @@ def main(args, loglevel):
     precommands = args.precommands 
     num_threads = args.threads
     interval = args.interval
+    yaml_filename = args.yaml
 
+    # YAML file input is mutually exclusive with some other options
+    if args.yaml and (args.hostname or args.commands):
+        logging.error('You cannot specify hostname or commands if using a YAML file')
+        exit(1)        
+    elif (not args.yaml and (not args.hostname or not args.commands)):
+        logging.error('You must specify hostname and commands, or use -y for YAML')
+        exit(1)
+    
     # Ask for credentials if not passed from CLI args
     if not username:
         username = raw_input('Enter username:')
     if not password:
         password = getpass('Enter password:')
 
+    # YAML file parsing
+    if yaml_filename:                
+        f = open(yaml_filename)
+        buf = f.read()
+        f.close()
+        yaml_task_list = yaml.load(buf)        
+        num_threads = len(yaml_task_list)
+            
     input_queue = Queue()
     output_queue = Queue()
 
-    # Add our task to the queue
-    task = {
-        'hostname': hostname,
-        'username': username,
-        'password': password,
-        'mode': mode,
-        'device_type': device_type,
-        'parser_mode': parser_mode,
-        'commands': commands,
-        'precommands': precommands,
-        'interval': interval    
-    }
-    input_queue.put(task)
-    logging.debug('Added task to the queue: %s' % task)
+    if yaml_filename:
+        # Add our task to the queue
+        for yaml_task in yaml_task_list:
+            task = {
+                'hostname': yaml_task['device_name'],
+                'username': username,
+                'password': password,
+                'mode': 'influx',
+                'device_type': yaml_task['device_type'],
+                'parser_mode': yaml_task['parse_mode'],
+                'commands': yaml_task['commands'],
+                'precommands': yaml_task['post_login_commands'],
+                'interval': interval    
+            }
+                        
+            input_queue.put(task)          
+            logging.debug('Added task to the queue: %s' % task)
+                    
+    else:
+        # Add our task to the queue
+        task = {
+            'hostname': hostname,
+            'username': username,
+            'password': password,
+            'mode': mode,
+            'device_type': device_type,
+            'parser_mode': parser_mode,
+            'commands': commands,
+            'precommands': precommands,
+            'interval': interval    
+        }
+        input_queue.put(task)
+        logging.debug('Added task to the queue: %s' % task)
 
     # Add guardian to the queue
     for i in range(1, num_threads + 1):
@@ -342,7 +387,7 @@ def main(args, loglevel):
         logging.debug('Process %s PID %s started' % (i, p.pid))
     
 if __name__ == '__main__':    
-    
+       
     # Setup parser    
     parser = argparse.ArgumentParser( 
                         description = "Screen scrapping poller for InfluxDB/telegraf",
@@ -352,13 +397,13 @@ if __name__ == '__main__':
                         "-H",
                         "--hostname",
                         help = "hostname",
-                        required = True)
+                        )
     parser.add_argument(
                         "-c",
                         "--commands",
                         nargs = "+",
                         help = "Command:Tags",
-                        required = True)
+                        )
     parser.add_argument(
                         "-C",
                         "--precommands",
@@ -405,7 +450,7 @@ if __name__ == '__main__':
     parser.add_argument(
                         "-y",
                         "--yaml",
-                        help = "YAML task list",
+                        help = "YAML input file",
                         )
     parser.add_argument(
                         "-v",
