@@ -19,18 +19,7 @@ import sshpoller
 index_file = 'index'
 template_dir = 'templates'
 
-generic_task = {
-    'hostname': '127.0.0.1',
-    'username': 'username',
-    'password': 'password',
-    'device_type': 'generic',
-    'parser_mode': 'fsm',
-    'commands': '',
-    'precommands': '',
-}
-
 class SSH_PollerTest(unittest.TestCase):
-
 
     def test_quotes_in_str(self):
         """ Test quotes_in_str()
