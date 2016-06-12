@@ -1,9 +1,8 @@
 Value INTF_NAME (\S+)
-Value INPUT_BYTES (\d+)
-Value OUTPUT_BYTES (\d+)
+Value INPUT_PACKETS (\d+)
+Value OUTPUT_PACKETS (\d+)
 
 Start
   ^Physical interface: ${INTF_NAME},
-  ^\s+Input\s+bytes\s+:\s+${INPUT_BYTES}\s+
-  ^\s+Output\s+bytes\s+:\s+${OUTPUT_BYTES}\s+
-  ^\s+Interface transmit statistics: Disabled -> Record
+  ^\s+Input\s+packets\s*:\s*${INPUT_PACKETS}
+  ^\s+Output\s+packets\s*:\s*${OUTPUT_PACKETS} -> Record

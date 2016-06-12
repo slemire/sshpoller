@@ -68,9 +68,6 @@ class SSH_Poller:
             elif len(command.split(':')) == 2:
                 self.command_list.append({'command':command.split(':')[0], 'tag':command.split(':')[1]})
 
-    def get_datalist(self):
-        return data_list
-
     def connect(self):
         """ Connects SSH session """
 
@@ -110,7 +107,7 @@ class SSH_Poller:
         logging.debug('Connection cleaned-up')
 
     def parse_fsm(self, result, command):
-        """ Parse command output through TextFSM """
+        """ Parses command output through TextFSM """
 
         result = ''.join(result)
         cli_table = clitable.CliTable(index_file, template_dir)
@@ -191,33 +188,6 @@ class SSH_Poller:
 
         print(json.dumps(self.data_list, indent=2))
 
-    def output_line(self):
-        """ Return results in line protocol format """
-
-        for data in self.data_list:
-            for field in data['fields']:
-                measurement = re.sub('\s', '_', data['command'])
-
-                if data['tag']:
-                    line = '%s,%s=%s,host=%s ' % (measurement, data['tag'], quotes_in_str(field[data['tag']]), quotes_in_str(self.hostname))
-                else:
-                    line = '%s,host=%s ' % (measurement, quotes_in_str(self.hostname))
-
-                if data['tag']:
-                    field.pop(data['tag'])
-
-                i = len(field)
-                j = 0
-
-                for key, value in field.iteritems():
-                    j = j + 1
-                    if j == i:
-                        line = '%s%s=%s' % (line, key, quotes_in_str(value))
-                    else:
-                        line = '%s%s=%s,' % (line, key, quotes_in_str(value))
-            
-                print line
-
     def output_influxdb(self):
         """ Writes data to the InfluxDB """
                 
@@ -282,16 +252,14 @@ def worker(input_queue, output_queue):
             logging.info('JSON mode selected')
             poller.send_commands()
             poller.output_json()
-        elif task['mode'] == 'line':
-            logging.info('Line protocol mode selected')
-            poller.send_commands()
-            poller.output_line()
         elif task['mode'] == 'influx':
             logging.info('InfluxDB mode selected, polling every %s seconds' % task['interval'])
             if task['interval'] == 0:
+                # Interval not set, we'll just poll once
                 poller.send_commands()
                 poller.output_influxdb()
             else:
+                # Interval is set, start polling loop
                 while True:
                     poller.send_commands()
                     poller.output_influxdb()
@@ -308,8 +276,8 @@ def main(args, loglevel):
     hostname = args.hostname
     username = args.username
     password = args.password
-    mode = args.mode                # Valid choices: json, line, influx
-    device_type = args.device_type  # Valid choices documented in netmiko
+    mode = args.mode                # Valid choices: json, influx
+    device_type = args.device_type  # See netmiko's doc for valid types
     parser_mode = args.parse        # Valid choices : fsm, csv
     commands = args.commands
     precommands = args.precommands 
@@ -390,7 +358,7 @@ if __name__ == '__main__':
        
     # Setup parser    
     parser = argparse.ArgumentParser( 
-                        description = "Screen scrapping poller for InfluxDB/telegraf",
+                        description = "Screen scrapping poller with JSON & InfluxDB output",
                         epilog = "As an alternative to the commandline, params can be placed in a file, one per line, and specified on the commandline like '%(prog)s @params.conf'.",
                         fromfile_prefix_chars = '@' )
     parser.add_argument(
@@ -408,7 +376,7 @@ if __name__ == '__main__':
                         "-C",
                         "--precommands",
                         nargs = "+",
-                        help = "Commands sent after connection (not parsed)",
+                        help = "Commands sent after connection (will not be parsed)",
                         )
     parser.add_argument(
                         "-d",
@@ -419,7 +387,7 @@ if __name__ == '__main__':
                         "-m",
                         "--mode",
                         help = "Output mode (default = json)",
-                        choices = ['json', 'line', 'influx'],
+                        choices = ['json', 'influx'],
                         default = 'json')
     parser.add_argument(
                         "-i",
@@ -438,7 +406,7 @@ if __name__ == '__main__':
     parser.add_argument(
                         "-P",
                         "--parse",
-                        help = "Parser mode (default = fsm)",
+                        help = "Text input format (default = fsm)",
                         choices = ['fsm', 'csv'],
                         default = 'fsm'
                         )

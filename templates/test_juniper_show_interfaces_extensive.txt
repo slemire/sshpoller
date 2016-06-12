@@ -1,0 +1,506 @@
+
+
+{master:0}
+username@hostname> show interfaces    
+Physical interface: ge-0/0/0, Enabled, Physical link is Up
+  Interface index: 129, SNMP ifIndex: 502
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:43, Hardware address: 54:e0:32:2f:c6:43
+  Last flapped   : 2014-09-19 15:31:24 EDT (90w1d 04:28 ago)
+  Input rate     : 1368 bps (1 pps)
+  Output rate    : 6392 bps (6 pps)
+  Active alarms  : None
+  Active defects : None
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/0.0 (Index 68) (SNMP ifIndex 503)
+    Flags: SNMP-Traps 0x40004000 Encapsulation: ENET2
+    Input packets : 564508
+    Output packets: 2757798
+    Protocol eth-switch
+       Flags: Is-Primary, Trunk-Mode
+
+Physical interface: ge-0/0/1, Enabled, Physical link is Up
+  Interface index: 130, SNMP ifIndex: 504
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:44, Hardware address: 54:e0:32:2f:c6:44
+  Last flapped   : 2014-09-19 14:50:28 EDT (90w1d 05:09 ago)
+  Input rate     : 55416 bps (31 pps)
+  Output rate    : 305264 bps (41 pps)
+  Active alarms  : None
+  Active defects : None
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/1.0 (Index 69) (SNMP ifIndex 505)
+    Flags: SNMP-Traps 0x4000 Encapsulation: ENET2
+    Input packets : 5746213
+    Output packets: 2809403
+    Protocol eth-switch
+      Flags: None
+
+Physical interface: ge-0/0/2, Enabled, Physical link is Up
+  Interface index: 131, SNMP ifIndex: 506
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:45, Hardware address: 54:e0:32:2f:c6:45
+  Last flapped   : 2014-09-19 14:50:30 EDT (90w1d 05:09 ago)
+  Input rate     : 428224 bps (713 pps)
+  Output rate    : 7913760 bps (694 pps)
+  Active alarms  : None
+  Active defects : None
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/2.0 (Index 70) (SNMP ifIndex 507)
+    Flags: SNMP-Traps 0x40004000 Encapsulation: ENET2
+    Input packets : 887
+    Output packets: 2738521
+    Protocol eth-switch
+      Flags: Trunk-Mode
+
+Physical interface: ge-0/0/3, Enabled, Physical link is Up
+  Interface index: 132, SNMP ifIndex: 508
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:46, Hardware address: 54:e0:32:2f:c6:46
+  Last flapped   : 2014-09-19 14:50:26 EDT (90w1d 05:09 ago)
+  Input rate     : 0 bps (0 pps)
+  Output rate    : 5016 bps (6 pps)
+  Active alarms  : None
+  Active defects : None
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/3.0 (Index 71) (SNMP ifIndex 509)
+    Flags: SNMP-Traps 0x40004000 Encapsulation: ENET2
+    Input packets : 0
+    Output packets: 2738499
+    Protocol eth-switch
+      Flags: Trunk-Mode
+
+Physical interface: ge-0/0/4, Enabled, Physical link is Up
+  Interface index: 133, SNMP ifIndex: 510
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:47, Hardware address: 54:e0:32:2f:c6:47
+  Last flapped   : 2014-09-19 14:50:26 EDT (90w1d 05:09 ago)
+  Input rate     : 0 bps (0 pps)
+  Output rate    : 5528 bps (7 pps)
+  Active alarms  : None
+  Active defects : None
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/4.0 (Index 72) (SNMP ifIndex 511)
+    Flags: SNMP-Traps 0x40004000 Encapsulation: ENET2
+    Input packets : 0
+    Output packets: 2738488
+    Protocol eth-switch
+      Flags: Trunk-Mode
+
+Physical interface: ge-0/0/5, Enabled, Physical link is Up
+  Interface index: 134, SNMP ifIndex: 512
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:48, Hardware address: 54:e0:32:2f:c6:48
+  Last flapped   : 2016-04-26 22:54:18 EDT (6w3d 21:06 ago)
+  Input rate     : 6845016 bps (595 pps)
+  Output rate    : 392288 bps (626 pps)
+  Active alarms  : None
+  Active defects : None
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/5.0 (Index 73) (SNMP ifIndex 513)
+    Flags: SNMP-Traps 0x40004000 Encapsulation: ENET2
+    Input packets : 14242
+    Output packets: 2738524
+    Protocol eth-switch
+      Flags: Trunk-Mode
+
+Physical interface: ge-0/0/6, Enabled, Physical link is Up
+  Interface index: 135, SNMP ifIndex: 514
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:49, Hardware address: 54:e0:32:2f:c6:49
+  Last flapped   : 2016-04-26 22:54:18 EDT (6w3d 21:06 ago)
+  Input rate     : 1560 bps (2 pps)
+  Output rate    : 8488 bps (10 pps)
+  Active alarms  : None
+  Active defects : None
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/6.0 (Index 74) (SNMP ifIndex 515)
+    Flags: SNMP-Traps 0x40004000 Encapsulation: ENET2
+    Input packets : 1771049
+    Output packets: 2757389
+    Protocol eth-switch
+      Flags: Trunk-Mode
+
+Physical interface: ge-0/0/7, Enabled, Physical link is Up
+  Interface index: 136, SNMP ifIndex: 516
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:4a, Hardware address: 54:e0:32:2f:c6:4a
+  Last flapped   : 2016-04-26 22:58:04 EDT (6w3d 21:02 ago)
+  Input rate     : 2856 bps (4 pps)
+  Output rate    : 7632 bps (7 pps)
+  Active alarms  : None
+  Active defects : None
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/7.0 (Index 75) (SNMP ifIndex 517)
+    Flags: SNMP-Traps 0x40004000 Encapsulation: ENET2
+    Input packets : 8179833
+    Output packets: 5314554
+    Protocol eth-switch
+      Flags: Trunk-Mode
+
+Physical interface: ge-0/0/8, Enabled, Physical link is Up
+  Interface index: 137, SNMP ifIndex: 518
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:4b, Hardware address: 54:e0:32:2f:c6:4b
+  Last flapped   : 2016-04-26 22:43:56 EDT (6w3d 21:16 ago)
+  Input rate     : 235296 bps (32 pps)
+  Output rate    : 53856 bps (42 pps)
+  Active alarms  : None
+  Active defects : None
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/8.0 (Index 76) (SNMP ifIndex 519)
+    Flags: SNMP-Traps 0x40004000 Encapsulation: ENET2
+    Input packets : 12949
+    Output packets: 2738492
+    Protocol eth-switch
+      Flags: Trunk-Mode
+
+Physical interface: ge-0/0/9, Enabled, Physical link is Up
+  Interface index: 138, SNMP ifIndex: 520
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:4c, Hardware address: 54:e0:32:2f:c6:4c
+  Last flapped   : 2016-05-25 17:50:20 EDT (2w3d 02:10 ago)
+  Input rate     : 0 bps (0 pps)
+  Output rate    : 1712 bps (3 pps)
+  Active alarms  : None
+  Active defects : None
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/9.0 (Index 77) (SNMP ifIndex 521)
+    Flags: SNMP-Traps 0x40004000 Encapsulation: ENET2
+    Input packets : 119972
+    Output packets: 1484400
+    Protocol eth-switch
+      Flags: Trunk-Mode
+
+Physical interface: ge-0/0/10, Enabled, Physical link is Down
+  Interface index: 139, SNMP ifIndex: 522
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running Down 
+  Interface flags: Hardware-Down SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:4d, Hardware address: 54:e0:32:2f:c6:4d
+  Last flapped   : 2016-05-25 18:00:56 EDT (2w3d 01:59 ago)
+  Input rate     : 0 bps (0 pps)
+  Output rate    : 0 bps (0 pps)
+  Active alarms  : LINK
+  Active defects : LINK
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/10.0 (Index 78) (SNMP ifIndex 523)
+    Flags: Device-Down SNMP-Traps 0x40004000 Encapsulation: ENET2
+    Input packets : 75
+    Output packets: 108
+    Protocol eth-switch
+      Flags: Trunk-Mode
+
+Physical interface: ge-0/0/11, Enabled, Physical link is Down
+  Interface index: 140, SNMP ifIndex: 524
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: Hardware-Down SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:4e, Hardware address: 54:e0:32:2f:c6:4e
+  Last flapped   : Never
+  Input rate     : 0 bps (0 pps)
+  Output rate    : 0 bps (0 pps)
+  Active alarms  : LINK
+  Active defects : LINK
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/0/11.0 (Index 79) (SNMP ifIndex 525)
+    Flags: Device-Down SNMP-Traps 0x4000 Encapsulation: ENET2
+    Input packets : 0
+    Output packets: 0
+    Protocol eth-switch
+      Flags: None
+
+Physical interface: ge-0/1/0, Enabled, Physical link is Down
+  Interface index: 141, SNMP ifIndex: 526
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: Hardware-Down SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:4f, Hardware address: 54:e0:32:2f:c6:4f
+  Last flapped   : Never
+  Input rate     : 0 bps (0 pps)
+  Output rate    : 0 bps (0 pps)
+  Active alarms  : LINK
+  Active defects : LINK
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/1/0.0 (Index 80) (SNMP ifIndex 527)
+    Flags: Device-Down SNMP-Traps 0x4000 Encapsulation: ENET2
+    Input packets : 0
+    Output packets: 0
+    Protocol eth-switch
+      Flags: None
+
+Physical interface: ge-0/1/1, Enabled, Physical link is Down
+  Interface index: 142, SNMP ifIndex: 528
+  Description: Interface_Description_Here
+  Link-level type: Ethernet, MTU: 9216, Speed: Auto, Duplex: Auto, BPDU Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled,
+  Flow control: Enabled, Auto-negotiation: Enabled, Remote fault: Online, Media type: Copper, IEEE 802.3az Energy Efficient Ethernet: Disabled
+  Device flags   : Present Running
+  Interface flags: Hardware-Down SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 8 supported, 8 maximum usable queues
+  Current address: 54:e0:32:2f:c6:50, Hardware address: 54:e0:32:2f:c6:50
+  Last flapped   : Never
+  Input rate     : 0 bps (0 pps)
+  Output rate    : 0 bps (0 pps)
+  Active alarms  : LINK
+  Active defects : LINK
+  Interface transmit statistics: Disabled
+
+  Logical interface ge-0/1/1.0 (Index 81) (SNMP ifIndex 529)
+    Flags: Device-Down SNMP-Traps 0x4000 Encapsulation: ENET2
+    Input packets : 0
+    Output packets: 0
+    Protocol eth-switch
+      Flags: None
+
+Physical interface: bme0, Enabled, Physical link is Up
+  Interface index: 64, SNMP ifIndex: 37
+  Type: Ethernet, Link-level type: Ethernet, MTU: 1576
+  Device flags   : Present Running
+  Link flags     : None
+  Current address: 00:0b:ca:fe:00:00, Hardware address: 00:0b:ca:fe:00:00
+  Last flapped   : Never
+    Input packets : 0                   
+    Output packets: 28816364
+
+  Logical interface bme0.32768 (Index 3) (SNMP ifIndex 38)
+    Flags: Encapsulation: ENET2
+    Input packets : 16409846
+    Output packets: 3
+    Protocol inet, MTU: 1562
+      Flags: Is-Primary
+      Addresses, Flags: Primary Is-Default Is-Preferred Is-Primary
+        Destination: 128/2, Local: 128.0.0.1, Broadcast: 191.255.255.255
+      Addresses, Flags: Primary
+        Destination: 128/2, Local: 128.0.0.16, Broadcast: 191.255.255.255
+      Addresses
+        Destination: 128/2, Local: 128.0.0.32, Broadcast: 191.255.255.255
+    Protocol tnp, MTU: 1562
+      Flags: Is-Primary
+      Addresses, Flags: Primary
+        Local: 0x10
+
+Physical interface: dsc, Enabled, Physical link is Up
+  Interface index: 5, SNMP ifIndex: 5
+  Type: Software-Pseudo, MTU: Unlimited
+  Device flags   : Present Running
+  Interface flags: Point-To-Point SNMP-Traps
+  Link flags     : None
+  Last flapped   : Never
+    Input packets : 0
+    Output packets: 0
+
+Physical interface: gre, Enabled, Physical link is Up
+  Interface index: 10, SNMP ifIndex: 8
+  Type: GRE, Link-level type: GRE, MTU: Unlimited, Speed: Unlimited
+  Current address: Unspecified, Hardware address: Unspecified
+  Device flags   : Present Running
+  Interface flags: Point-To-Point SNMP-Traps
+    Input packets : 0
+    Output packets: 0
+
+Physical interface: ipip, Enabled, Physical link is Up
+  Interface index: 11, SNMP ifIndex: 9
+  Type: IPIP, Link-level type: IP-over-IP, MTU: Unlimited, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+    Input packets : 0
+    Output packets: 0
+
+Physical interface: lo0, Enabled, Physical link is Up
+  Interface index: 6, SNMP ifIndex: 6
+  Type: Loopback, MTU: Unlimited        
+  Device flags   : Present Running Loopback
+  Interface flags: SNMP-Traps
+  Link flags     : None
+  Last flapped   : Never
+    Input packets : 131528304
+    Output packets: 131528304
+
+  Logical interface lo0.16384 (Index 64) (SNMP ifIndex 21)
+    Flags: Encapsulation: Unspecified
+    Input packets : 0
+    Output packets: 0
+    Protocol inet, MTU: Unlimited
+      Flags: None
+      Addresses, Flags: Primary
+        Local: 127.0.0.1
+
+Physical interface: lsi, Enabled, Physical link is Up
+  Interface index: 4, SNMP ifIndex: 4
+  Type: Software-Pseudo, Link-level type: LSI, MTU: 1496, Speed: Unlimited
+  Device flags   : Present Running
+  Link flags     : None
+  Last flapped   : Never
+    Input packets : 0
+    Output packets: 0
+
+Physical interface: me0, Enabled, Physical link is Down
+  Interface index: 1, SNMP ifIndex: 33
+  Type: Ethernet, Link-level type: Ethernet, MTU: 1514
+  Device flags   : Present Running
+  Interface flags: Hardware-Down SNMP-Traps
+  Current address: 54:e0:32:2f:c6:42, Hardware address: 54:e0:32:2f:c6:7f
+  Last flapped   : 2014-09-19 14:49:50 EDT (90w1d 05:10 ago)
+    Input packets : 0
+    Output packets: 0
+
+  Logical interface me0.0 (Index 4) (SNMP ifIndex 34)
+    Flags: Device-Down SNMP-Traps Encapsulation: ENET2
+    Input packets : 0
+    Output packets: 0
+    Protocol eth-switch
+      Flags: Is-Primary
+
+Physical interface: mtun, Enabled, Physical link is Up
+  Interface index: 65, SNMP ifIndex: 12
+  Type: Multicast-GRE, Link-level type: GRE, MTU: Unlimited, Speed: Unlimited
+  Current address: Unspecified, Hardware address: Unspecified
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+    Input packets : 0                   
+    Output packets: 0
+
+Physical interface: pimd, Enabled, Physical link is Up
+  Interface index: 26, SNMP ifIndex: 11
+  Type: PIMD, Link-level type: PIM-Decapsulator, MTU: Unlimited, Speed: Unlimited
+  Device flags   : Present Running
+    Input packets : 0
+    Output packets: 0
+
+Physical interface: pime, Enabled, Physical link is Up
+  Interface index: 25, SNMP ifIndex: 10
+  Type: PIME, Link-level type: PIM-Encapsulator, MTU: Unlimited, Speed: Unlimited
+  Device flags   : Present Running
+    Input packets : 0
+    Output packets: 0
+
+Physical interface: tap, Enabled, Physical link is Up
+  Interface index: 12, SNMP ifIndex: 7
+  Type: Software-Pseudo, Link-level type: Interface-Specific, MTU: Unlimited, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+  Link flags     : None
+  Last flapped   : Never
+    Input packets : 0
+    Output packets: 0
+
+Physical interface: vlan, Enabled, Physical link is Up
+  Interface index: 128, SNMP ifIndex: 501
+  Type: VLAN, Link-level type: VLAN, MTU: 1518, Speed: 1000mbps
+  Device flags   : Present Running
+  Link type      : Full-Duplex
+  Link flags     : None
+  Current address: 54:e0:32:2f:c6:41, Hardware address: 54:e0:32:2f:c6:41
+  Last flapped   : Never
+    Input packets : 12297265
+    Output packets: 2743517
+
+  Logical interface vlan.0 (Index 67) (SNMP ifIndex 530)
+    Flags: SNMP-Traps 0x4000 Encapsulation: ENET2
+    Input packets : 12297265
+    Output packets: 2743518
+    Protocol inet, MTU: 1500
+      Flags: Is-Primary
+      Addresses, Flags: Is-Default Is-Preferred Is-Primary
+        Destination: 172.23.10/24, Local: 172.23.10.2, Broadcast: 172.23.10.255
+
+Physical interface: vme, Enabled, Physical link is Down
+  Interface index: 66, SNMP ifIndex: 35
+  Type: Mgmt-VLAN, Link-level type: Mgmt-VLAN, MTU: 1518, Speed: 1000mbps
+  Device flags   : Present Running
+  Interface flags: Hardware-Down SNMP-Traps
+  Link type      : Full-Duplex
+  Link flags     : None
+  Current address: 54:e0:32:2f:c6:42, Hardware address: 54:e0:32:2f:c6:42
+  Last flapped   : Never
+    Input packets : 0
+    Output packets: 0
+
+{master:0}
+username@hostname>    

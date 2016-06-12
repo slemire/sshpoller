@@ -14,22 +14,21 @@ This is a Python SSH screen scrapper that parses the output of commands sent to 
 
 ## Parsing mode
  * TextFSM (default)
- * CSV (I use it for some commands on F5 ADC's that can output to csv)
+ * CSV (Can be used for some commands on F5 ADC's that can output to csv)
  
 ## Output supported
  * JSON
- * InfluxDB's line protocol (can be used by telegraf)
- * InfluxDB (through InfluxDBclient module)
+ * InfluxDB
 
 ##Usage
 ```
 ./sshpoller.py -h
 usage: sshpoller.py [-h] [-H HOSTNAME] [-c COMMANDS [COMMANDS ...]]
                     [-C PRECOMMANDS [PRECOMMANDS ...]] [-d DEVICE_TYPE]
-                    [-m {json,line,influx}] [-i INTERVAL] [-u USERNAME]
+                    [-m {json,influx}] [-i INTERVAL] [-u USERNAME]
                     [-p PASSWORD] [-P {fsm,csv}] [-t THREADS] [-y YAML] [-v]
 
-Screen scrapping poller for InfluxDB/telegraf
+Screen scrapping poller with JSON & InfluxDB output
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -38,10 +37,10 @@ optional arguments:
   -c COMMANDS [COMMANDS ...], --commands COMMANDS [COMMANDS ...]
                         Command:Tags
   -C PRECOMMANDS [PRECOMMANDS ...], --precommands PRECOMMANDS [PRECOMMANDS ...]
-                        Commands sent after connection (not parsed)
+                        Commands sent after connection (will not be parsed)
   -d DEVICE_TYPE, --device_type DEVICE_TYPE
                         Device type (FSM mode only)
-  -m {json,line,influx}, --mode {json,line,influx}
+  -m {json,influx}, --mode {json,influx}
                         Output mode (default = json)
   -i INTERVAL, --interval INTERVAL
                         Polling interval (sec)
@@ -50,7 +49,7 @@ optional arguments:
   -p PASSWORD, --password PASSWORD
                         SSH password
   -P {fsm,csv}, --parse {fsm,csv}
-                        Parser mode (default = fsm)
+                        Text input format (default = fsm)
   -t THREADS, --threads THREADS
                         # of threads
   -y YAML, --yaml YAML  YAML input file
