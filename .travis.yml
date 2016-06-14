@@ -12,7 +12,7 @@ install:
   - cd ..
 
 script:
-  - python test_sshpoller.py
+  - coverage run test_sshpoller.py
 
 notifications:
   email: false
