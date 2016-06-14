@@ -1,4 +1,4 @@
- #!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # Import standard python modules
@@ -10,7 +10,6 @@ import unittest
 
 # Dependencies
 import clitable
-import textfsm
 
 # Module we're testing
 import sshpoller
@@ -19,8 +18,8 @@ import sshpoller
 index_file = 'index'
 template_dir = 'templates'
 
-class SSH_PollerTest(unittest.TestCase):
 
+class SSH_PollerTest(unittest.TestCase):
     def test_quotes_in_str(self):
         """ Test quotes_in_str()
         """
@@ -75,6 +74,7 @@ class SSH_PollerTest(unittest.TestCase):
         output_queue = Queue()
         input_queue.put(task)
         self.assertFalse(sshpoller.worker(input_queue, output_queue))
+
 
 if __name__ == '__main__':
     unittest.main()

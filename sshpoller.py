@@ -7,8 +7,6 @@ from getpass import getpass
 import csv
 import json
 import logging
-import os
-import re
 import sys
 from time import sleep, time
 import tempfile
@@ -17,7 +15,6 @@ from multiprocessing import Process, Queue
 
 # TextFSM module : https://github.com/google/textfsm
 import clitable
-import textfsm
 
 # Netmiko module : https://github.com/ktbyers/netmiko
 from netmiko import ConnectHandler, ssh_exception
@@ -37,6 +34,7 @@ db_port = 8086
 db_name = 'db_name'
 db_user = 'root'
 db_password = 'root'
+
 
 class SSH_Poller:
     """ SSH Poller class """
@@ -59,25 +57,25 @@ class SSH_Poller:
         self.device_type = task['device_type']
         self.parser_mode = task['parser_mode']
         self.precommand_list = task['precommands']
-        
+
         for command in task['commands']:
             # Command doesn't contain tags attribute
             if len(command.split(':')) == 1:
-                self.command_list.append({'command':command.split(':')[0], 'tag':''})
+                self.command_list.append({'command': command.split(':')[0], 'tag': ''})
             # Command contains tags attribute
             elif len(command.split(':')) == 2:
-                self.command_list.append({'command':command.split(':')[0], 'tag':command.split(':')[1]})
+                self.command_list.append({'command': command.split(':')[0], 'tag': command.split(':')[1]})
 
     def connect(self):
         """ Connects SSH session """
 
         try:
             self.sock = ConnectHandler(
-                    device_type=self.device_type,
-                    ip=self.hostname,
-                    username=self.username,
-                    password=self.password)
-            logging.debug('Connection to %s successful!' % self.hostname)            
+                device_type=self.device_type,
+                ip=self.hostname,
+                username=self.username,
+                password=self.password)
+            logging.debug('Connection to %s successful!' % self.hostname)
             self.prompt = self.sock.find_prompt()
 
             if self.prompt:
@@ -86,7 +84,7 @@ class SSH_Poller:
                 # Send commands after login that won't be parsed
                 if self.precommand_list:
                     for precommand in self.precommand_list:
-                         self.sock.send_command(precommand)
+                        self.sock.send_command(precommand)
             else:
                 logging.debug('No prompt found')
 
@@ -94,7 +92,7 @@ class SSH_Poller:
             logging.error('Authentication error, username was %s' % self.username)
             return False
 
-        except:            
+        except:
             print("Unexpected error:", sys.exc_info()[0])
             raise
 
@@ -118,11 +116,10 @@ class SSH_Poller:
 
             # Timestamp precision is set to 'seconds'
             timestamp = int(time())
-        
-            for field in clitable_to_dict(cli_table):
 
+            for field in clitable_to_dict(cli_table):
                 data = {}
-                data['tag'] = { 'host': self.hostname, 'command': command['tag'] }
+                data['tag'] = {'host': self.hostname, 'command': command['tag']}
                 data['command'] = command['command']
                 data['fields'] = dict((k, float_if_possible(v)) for (k, v) in field.items())
                 data['timestamp'] = timestamp
@@ -139,28 +136,28 @@ class SSH_Poller:
 
         # CVS module needs to read from a file, let's create one
         csvfile = tempfile.TemporaryFile()
-        
+
         result_list = result.split('\n')
-        
+
         # Add lines until we find first empty line
         for line in result_list:
             if line != "":
                 csvfile.write("%s\n" % line)
             else:
                 break
-        
+
         csvfile.seek(0)
-        
+
         reader = csv.DictReader(csvfile)
-        
+
         # Timestamp precision is set to 'seconds'
         timestamp = int(time())
-        
+
         for idx, row in enumerate(reader):
             data = {}
             data['tag'] = {'host': self.hostname, 'instance': idx}
             data['command'] = command['command']
-            row = dict((k, float_if_possible(v)) for (k, v) in row.items())            
+            row = dict((k, float_if_possible(v)) for (k, v) in row.items())
             data['fields'] = row
             data['timestamp'] = timestamp
             self.data_list.append(data)
@@ -190,12 +187,12 @@ class SSH_Poller:
 
     def output_influxdb(self):
         """ Writes data to the InfluxDB """
-                
+
         for data in self.data_list:
             measurement = data['command']
 
             client = InfluxDBClient(db_host, db_port, db_user, db_password, db_name)
-             
+
             # Build JSON body for the REST API call
             json_body = [
                 {
@@ -204,26 +201,34 @@ class SSH_Poller:
                     'fields': data['fields'],
                     'timestamp': data['timestamp']
                 }
-            ]                      
+            ]
 
             client.write_points(json_body, time_precision='s')
+
 
 def quotes_in_str(value):
     """ Add quotes around value if it's a string """
     if type(value) == str:
-        return("\"%s\"" % value)
+        return ("\"%s\"" % value)
     else:
-        return(value)
+        return (value)
+
 
 def int_if_possible(value):
     """ Convert to int if possible """
-    try: return int(value)
-    except: return value
+    try:
+        return int(value)
+    except:
+        return value
+
 
 def float_if_possible(value):
     """ Convert to float if possible """
-    try: return float(value)
-    except: return value
+    try:
+        return float(value)
+    except:
+        return value
+
 
 def clitable_to_dict(cli_table):
     """Converts TextFSM cli_table object to list of dictionaries """
@@ -235,6 +240,7 @@ def clitable_to_dict(cli_table):
         objs.append(temp_dict)
 
     return objs
+
 
 def worker(input_queue, output_queue):
     """ Worker thread """
@@ -267,8 +273,8 @@ def worker(input_queue, output_queue):
     else:
         return
 
+
 def main(args, loglevel):
-    
     # Logging format
     logging.basicConfig(format="%(asctime)s %(levelname)s: %(message)s", level=loglevel)
 
@@ -276,23 +282,24 @@ def main(args, loglevel):
     hostname = args.hostname
     username = args.username
     password = args.password
-    mode = args.mode                # Valid choices: json, influx
+    mode = args.mode  # Valid choices: json, influx
     device_type = args.device_type  # See netmiko's doc for valid types
-    parser_mode = args.parse        # Valid choices : fsm, csv
+    parser_mode = args.parse  # Valid choices : fsm, csv
     commands = args.commands
-    precommands = args.precommands 
+    precommands = args.precommands
     num_threads = args.threads
     interval = args.interval
     yaml_filename = args.yaml
+    yaml_task_list = []
 
     # YAML file input is mutually exclusive with some other options
     if args.yaml and (args.hostname or args.commands):
         logging.error('You cannot specify hostname or commands if using a YAML file')
-        exit(1)        
+        exit(1)
     elif (not args.yaml and (not args.hostname or not args.commands)):
         logging.error('You must specify hostname and commands, or use -y for YAML')
         exit(1)
-    
+
     # Ask for credentials if not passed from CLI args
     if not username:
         username = raw_input('Enter username:')
@@ -300,13 +307,13 @@ def main(args, loglevel):
         password = getpass('Enter password:')
 
     # YAML file parsing
-    if yaml_filename:                
+    if yaml_filename:
         f = open(yaml_filename)
         buf = f.read()
         f.close()
-        yaml_task_list = yaml.load(buf)        
+        yaml_task_list = yaml.load(buf)
         num_threads = len(yaml_task_list)
-            
+
     input_queue = Queue()
     output_queue = Queue()
 
@@ -322,12 +329,12 @@ def main(args, loglevel):
                 'parser_mode': yaml_task['parse_mode'],
                 'commands': yaml_task['commands'],
                 'precommands': yaml_task['post_login_commands'],
-                'interval': interval    
+                'interval': interval
             }
-                        
-            input_queue.put(task)          
+
+            input_queue.put(task)
             logging.debug('Added task to the queue: %s' % task)
-                    
+
     else:
         # Add our task to the queue
         task = {
@@ -339,7 +346,7 @@ def main(args, loglevel):
             'parser_mode': parser_mode,
             'commands': commands,
             'precommands': precommands,
-            'interval': interval    
+            'interval': interval
         }
         input_queue.put(task)
         logging.debug('Added task to the queue: %s' % task)
@@ -353,80 +360,81 @@ def main(args, loglevel):
         p = Process(target=worker, args=(input_queue, output_queue))
         p.start()
         logging.debug('Process %s PID %s started' % (i, p.pid))
-    
-if __name__ == '__main__':    
-       
+
+
+if __name__ == '__main__':
+
     # Setup parser    
-    parser = argparse.ArgumentParser( 
-                        description = "Screen scrapping poller with JSON & InfluxDB output",
-                        epilog = "As an alternative to the commandline, params can be placed in a file, one per line, and specified on the commandline like '%(prog)s @params.conf'.",
-                        fromfile_prefix_chars = '@' )
+    parser = argparse.ArgumentParser(
+        description="Screen scrapping poller with JSON & InfluxDB output",
+        epilog="As an alternative to the commandline, params can be placed in a file, one per line, and specified on the commandline like '%(prog)s @params.conf'.",
+        fromfile_prefix_chars='@')
     parser.add_argument(
-                        "-H",
-                        "--hostname",
-                        help = "hostname",
-                        )
+        "-H",
+        "--hostname",
+        help="hostname",
+    )
     parser.add_argument(
-                        "-c",
-                        "--commands",
-                        nargs = "+",
-                        help = "Command:Tags",
-                        )
+        "-c",
+        "--commands",
+        nargs="+",
+        help="Command:Tags",
+    )
     parser.add_argument(
-                        "-C",
-                        "--precommands",
-                        nargs = "+",
-                        help = "Commands sent after connection (will not be parsed)",
-                        )
+        "-C",
+        "--precommands",
+        nargs="+",
+        help="Commands sent after connection (will not be parsed)",
+    )
     parser.add_argument(
-                        "-d",
-                        "--device_type",
-                        help = "Device type (FSM mode only)",
-                        default = 'linux')
+        "-d",
+        "--device_type",
+        help="Device type (FSM mode only)",
+        default='linux')
     parser.add_argument(
-                        "-m",
-                        "--mode",
-                        help = "Output mode (default = json)",
-                        choices = ['json', 'influx'],
-                        default = 'json')
+        "-m",
+        "--mode",
+        help="Output mode (default = json)",
+        choices=['json', 'influx'],
+        default='json')
     parser.add_argument(
-                        "-i",
-                        "--interval",
-                        help = "Polling interval (sec)",
-                        default = 0
-                        )
+        "-i",
+        "--interval",
+        help="Polling interval (sec)",
+        default=0
+    )
     parser.add_argument(
-                        "-u",
-                        "--username",
-                        help = "SSH username")
+        "-u",
+        "--username",
+        help="SSH username")
     parser.add_argument(
-                        "-p",
-                        "--password",
-                        help = "SSH password")
+        "-p",
+        "--password",
+        help="SSH password")
     parser.add_argument(
-                        "-P",
-                        "--parse",
-                        help = "Text input format (default = fsm)",
-                        choices = ['fsm', 'csv'],
-                        default = 'fsm'
-                        )
+        "-P",
+        "--parse",
+        help="Text input format (default = fsm)",
+        choices=['fsm', 'csv'],
+        default='fsm'
+    )
     parser.add_argument(
-                        "-t",
-                        "--threads",
-                        help = "# of threads",
-                        default = 1)
+        "-t",
+        "--threads",
+        help="# of threads",
+        default=1)
     parser.add_argument(
-                        "-y",
-                        "--yaml",
-                        help = "YAML input file",
-                        )
+        "-y",
+        "--yaml",
+        help="YAML input file",
+    )
     parser.add_argument(
-                        "-v",
-                        "--verbose",
-                        help = "increase output verbosity",
-                        action = "store_true")
+        "-v",
+        "--verbose",
+        help="increase output verbosity",
+        action="store_true")
     args = parser.parse_args()
-  
+
     # Setup logging
     if args.verbose:
         loglevel = logging.DEBUG
