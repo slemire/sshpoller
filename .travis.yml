@@ -17,3 +17,6 @@ notifications:
   email: false
 
 sudo: false
+
+after_success:
+  coveralls
