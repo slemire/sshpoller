@@ -1,5 +1,5 @@
 # sshpoller
-[!Build Status](https://travis-ci.org/slemire/sshpoller.svg?branch=master)
+[![Build Status](https://travis-ci.org/slemire/sshpoller.svg?branch=master)](https://travis-ci.org/slemire/sshpoller)
 
 ## Description
 This is a Python SSH screen scrapper that parses the output of commands sent to a network device and returns the information in various output formats. It uses netmiko/paramiko to do the SSH connection and TextFSM to parse the command outputs. It can be used to poll a device at a specified interval and save some metrics obtained in an InfluxDB database. A use case for this would be polling a device for metrics that don't have any OID's associated with them, as is often the case with low-level debug commands.
