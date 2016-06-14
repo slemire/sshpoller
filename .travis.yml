@@ -5,13 +5,14 @@ python:
 install:
   - pip install .
   - pip install -r requirements.txt
+  - pip install coveralls
   - git clone https://github.com/google/textfsm
   - cd textfsm
   - python setup.py install
   - cd ..
 
 script:
-  - python test_sshpoller.py
+  - coverage run python test_sshpoller.py
 
 notifications:
   email: false
