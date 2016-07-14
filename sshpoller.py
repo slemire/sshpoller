@@ -282,23 +282,15 @@ def main(args, loglevel):
     hostname = args.hostname
     username = args.username
     password = args.password
-    mode = args.mode  # Valid choices: json, influx
+    mode = args.mode                # Valid choices: json, influx
     device_type = args.device_type  # See netmiko's doc for valid types
-    parser_mode = args.parse  # Valid choices : fsm, csv
+    parser_mode = args.parse        # Valid choices : fsm, csv
     commands = args.commands
     precommands = args.precommands
     num_threads = args.threads
     interval = args.interval
     yaml_filename = args.yaml
     yaml_task_list = []
-
-    # YAML file input is mutually exclusive with some other options
-    if args.yaml and (args.hostname or args.commands):
-        logging.error('You cannot specify hostname or commands if using a YAML file')
-        exit(1)
-    elif (not args.yaml and (not args.hostname or not args.commands)):
-        logging.error('You must specify hostname and commands, or use -y for YAML')
-        exit(1)
 
     # Ask for credentials if not passed from CLI args
     if not username:
@@ -331,7 +323,6 @@ def main(args, loglevel):
                 'precommands': yaml_task['post_login_commands'],
                 'interval': interval
             }
-
             input_queue.put(task)
             logging.debug('Added task to the queue: %s' % task)
 
@@ -368,11 +359,19 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Screen scrapping poller with JSON & InfluxDB output",
         epilog="As an alternative to the commandline, params can be placed in a file, one per line, and specified on the commandline like '%(prog)s @params.conf'.",
-        fromfile_prefix_chars='@')
-    parser.add_argument(
+        fromfile_prefix_chars='@'
+    )
+    # Hostname and YAML are mutually exclusive
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument(
         "-H",
         "--hostname",
         help="hostname",
+    )
+    group.add_argument(
+        "-y",
+        "--yaml",
+        help="YAML input file",
     )
     parser.add_argument(
         "-c",
@@ -390,13 +389,15 @@ if __name__ == '__main__':
         "-d",
         "--device_type",
         help="Device type (FSM mode only)",
-        default='linux')
+        default='linux'
+    )
     parser.add_argument(
         "-m",
         "--mode",
         help="Output mode (default = json)",
         choices=['json', 'influx'],
-        default='json')
+        default='json'
+    )
     parser.add_argument(
         "-i",
         "--interval",
@@ -406,11 +407,13 @@ if __name__ == '__main__':
     parser.add_argument(
         "-u",
         "--username",
-        help="SSH username")
+        help="SSH username"
+    )
     parser.add_argument(
         "-p",
         "--password",
-        help="SSH password")
+        help="SSH password"
+    )
     parser.add_argument(
         "-P",
         "--parse",
@@ -422,17 +425,14 @@ if __name__ == '__main__':
         "-t",
         "--threads",
         help="# of threads",
-        default=1)
-    parser.add_argument(
-        "-y",
-        "--yaml",
-        help="YAML input file",
+        default=1
     )
     parser.add_argument(
         "-v",
         "--verbose",
         help="increase output verbosity",
-        action="store_true")
+        action="store_true"
+    )
     args = parser.parse_args()
 
     # Setup logging
