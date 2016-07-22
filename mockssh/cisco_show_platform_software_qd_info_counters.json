@@ -1,0 +1,177 @@
+[
+  {
+    "fields": {
+      "q3p_mcast_rx": 1062134136.0,
+      "q3p_mcast_tx": 1438731227.0,
+      "q3_discard": 0.0,
+      "q2_mcast_rx": 0.0,
+      "q2_mcast_tx": 0.0,
+      "q3_ucast_rx": 1062127820.0,
+      "q2p_mcast_rx": 1532212.0,
+      "q2_ucast_rx": 1532212.0,
+      "q2_ucast_tx": 2873436.0,
+      "q3_mcast_rx": 6316.0,
+      "intf_name": "Eth1/1",
+      "q3_ucast_tx": 1362342793.0,
+      "q2_discard": 0.0,
+      "q2p_mcast_tx": 2873436.0,
+      "q3_mcast_tx": 76388434.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show platform software qd info counters",
+    "timestamp": 1469203974
+  },
+  {
+    "fields": {
+      "q3p_mcast_rx": 895507104.0,
+      "q3p_mcast_tx": 1198010059.0,
+      "q3_discard": 0.0,
+      "q2_mcast_rx": 0.0,
+      "q2_mcast_tx": 0.0,
+      "q3_ucast_rx": 895499813.0,
+      "q2p_mcast_rx": 1532211.0,
+      "q2_ucast_rx": 1532211.0,
+      "q2_ucast_tx": 2873441.0,
+      "q3_mcast_rx": 7291.0,
+      "intf_name": "Eth1/2",
+      "q3_ucast_tx": 1126310505.0,
+      "q2_discard": 0.0,
+      "q2p_mcast_tx": 2873441.0,
+      "q3_mcast_tx": 71699554.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show platform software qd info counters",
+    "timestamp": 1469203974
+  },
+  {
+    "fields": {
+      "q3p_mcast_rx": 228329689.0,
+      "q3p_mcast_tx": 330183201.0,
+      "q3_discard": 0.0,
+      "q2_mcast_rx": 0.0,
+      "q2_mcast_tx": 0.0,
+      "q3_ucast_rx": 228325656.0,
+      "q2p_mcast_rx": 585282.0,
+      "q2_ucast_rx": 585282.0,
+      "q2_ucast_tx": 1463807.0,
+      "q3_mcast_rx": 4033.0,
+      "intf_name": "Eth1/3",
+      "q3_ucast_tx": 325484054.0,
+      "q2_discard": 0.0,
+      "q2p_mcast_tx": 1463807.0,
+      "q3_mcast_tx": 4699147.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show platform software qd info counters",
+    "timestamp": 1469203974
+  },
+  {
+    "fields": {
+      "q3p_mcast_rx": 156843801.0,
+      "q3p_mcast_tx": 157012963.0,
+      "q3_discard": 0.0,
+      "q2_mcast_rx": 0.0,
+      "q2_mcast_tx": 0.0,
+      "q3_ucast_rx": 156843671.0,
+      "q2p_mcast_rx": 585281.0,
+      "q2_ucast_rx": 585281.0,
+      "q2_ucast_tx": 1464025.0,
+      "q3_mcast_rx": 130.0,
+      "intf_name": "Eth1/4",
+      "q3_ucast_tx": 157007227.0,
+      "q2_discard": 0.0,
+      "q2p_mcast_tx": 1464025.0,
+      "q3_mcast_tx": 5736.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show platform software qd info counters",
+    "timestamp": 1469203974
+  },
+  {
+    "fields": {
+      "q3p_mcast_rx": 3374568617.0,
+      "q3p_mcast_tx": 1929731078.0,
+      "q3_discard": 0.0,
+      "q2_mcast_rx": 0.0,
+      "q2_mcast_tx": 0.0,
+      "q3_ucast_rx": 3374568438.0,
+      "q2p_mcast_rx": 634184.0,
+      "q2_ucast_rx": 634184.0,
+      "q2_ucast_tx": 1587497.0,
+      "q3_mcast_rx": 179.0,
+      "intf_name": "Eth1/5",
+      "q3_ucast_tx": 1929674724.0,
+      "q2_discard": 0.0,
+      "q2p_mcast_tx": 1587497.0,
+      "q3_mcast_tx": 56354.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show platform software qd info counters",
+    "timestamp": 1469203974
+  },
+  {
+    "fields": {
+      "q3p_mcast_rx": 0.0,
+      "q3p_mcast_tx": 0.0,
+      "q3_discard": 0.0,
+      "q2_mcast_rx": 0.0,
+      "q2_mcast_tx": 0.0,
+      "q3_ucast_rx": 0.0,
+      "q2p_mcast_rx": 743356014.0,
+      "q2_ucast_rx": 743356014.0,
+      "q2_ucast_tx": 702062807.0,
+      "q3_mcast_rx": 0.0,
+      "intf_name": "SUP 4",
+      "q3_ucast_tx": 0.0,
+      "q2_discard": 0.0,
+      "q2p_mcast_tx": 702062807.0,
+      "q3_mcast_tx": 0.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show platform software qd info counters",
+    "timestamp": 1469203974
+  },
+  {
+    "fields": {
+      "q3p_mcast_rx": 0.0,
+      "q3p_mcast_tx": 8765.0,
+      "q3_discard": 0.0,
+      "q2_mcast_rx": 0.0,
+      "q2_mcast_tx": 0.0,
+      "q3_ucast_rx": 0.0,
+      "q2p_mcast_rx": 2421000.0,
+      "q2_ucast_rx": 2431690.0,
+      "q2_ucast_tx": 0.0,
+      "q3_mcast_rx": 0.0,
+      "intf_name": "SUP 5",
+      "q3_ucast_tx": 8765.0,
+      "q2_discard": 0.0,
+      "q2p_mcast_tx": 0.0,
+      "q3_mcast_tx": 0.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show platform software qd info counters",
+    "timestamp": 1469203974
+  }
+]

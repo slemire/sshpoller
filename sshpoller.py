@@ -28,18 +28,21 @@ CSV_DELIMITER = ','
 index_file = 'index'
 template_dir = 'templates'
 
-# INFLUXDBCLIENT config settings
-db_host = 'localhost'
-db_port = 8086
-db_name = 'db_name'
-db_user = 'root'
-db_password = 'root'
+
 
 
 class SSH_Poller:
     """ SSH Poller class """
 
+    # InfluxDB settings (you should change these)
+    db_host = 'localhost'
+    db_port = 8086
+    db_name = 'db_name'
+    db_user = 'root'
+    db_password = 'root'
+
     hostname = ''
+    port = 22
     username = ''
     password = ''
     command_list = []
@@ -51,7 +54,9 @@ class SSH_Poller:
     sock = ConnectHandler
 
     def __init__(self, task):
+        self.data_list = []
         self.hostname = task['hostname']
+        self.port = task['port']
         self.username = task['username']
         self.password = task['password']
         self.device_type = task['device_type']
@@ -73,6 +78,7 @@ class SSH_Poller:
             self.sock = ConnectHandler(
                 device_type=self.device_type,
                 ip=self.hostname,
+                port=self.port,
                 username=self.username,
                 password=self.password)
             logging.debug('Connection to %s successful!' % self.hostname)
@@ -188,10 +194,11 @@ class SSH_Poller:
     def output_influxdb(self):
         """ Writes data to the InfluxDB """
 
-        for data in self.data_list:
-            measurement = data['command']
+        client = InfluxDBClient(self.db_host, self.db_port, self.db_user, self.db_password, self.db_name)
 
-            client = InfluxDBClient(db_host, db_port, db_user, db_password, db_name)
+        for data in self.data_list:
+
+            measurement = data['command']
 
             # Build JSON body for the REST API call
             json_body = [
@@ -203,8 +210,8 @@ class SSH_Poller:
                 }
             ]
 
+            print json.dumps(json_body, indent=2)
             client.write_points(json_body, time_precision='s')
-
 
 def quotes_in_str(value):
     """ Add quotes around value if it's a string """
@@ -280,6 +287,7 @@ def main(args, loglevel):
 
     # Set variables from CLI args
     hostname = args.hostname
+    port = args.port
     username = args.username
     password = args.password
     mode = args.mode                # Valid choices: json, influx
@@ -323,6 +331,10 @@ def main(args, loglevel):
                 'precommands': yaml_task['post_login_commands'],
                 'interval': interval
             }
+            if yaml_task['port']:
+                task['port'] = yaml_task['port']
+            else:
+                task['port'] = 22
             input_queue.put(task)
             logging.debug('Added task to the queue: %s' % task)
 
@@ -330,6 +342,7 @@ def main(args, loglevel):
         # Add our task to the queue
         task = {
             'hostname': hostname,
+            'port': port,
             'username': username,
             'password': password,
             'mode': mode,
@@ -413,6 +426,12 @@ if __name__ == '__main__':
         "-p",
         "--password",
         help="SSH password"
+    )
+    parser.add_argument(
+        "-o",
+        "--port",
+        help="SSH port",
+        default=22
     )
     parser.add_argument(
         "-P",

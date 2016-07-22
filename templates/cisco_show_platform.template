@@ -1,0 +1,22 @@
+Value INTF_NAME (.+)
+Value Q2_UCAST_RX (\d+)
+Value Q2_MCAST_RX (\d+)
+Value Q2_UCAST_TX (\d+)
+Value Q2_MCAST_TX (\d+)
+Value Q2_DISCARD (\d+)
+Value Q2P_MCAST_RX (\d+)
+Value Q2P_MCAST_TX (\d+)
+Value Q3_UCAST_RX (\d+)
+Value Q3_MCAST_RX (\d+)
+Value Q3_UCAST_TX (\d+)
+Value Q3_MCAST_TX (\d+)
+Value Q3_DISCARD (\d+)
+Value Q3P_MCAST_RX (\d+)
+Value Q3P_MCAST_TX (\d+)
+
+Start
+  ^.*NAME ${INTF_NAME}
+  ^2\|\s+${Q2_UCAST_RX}\|\s+${Q2_MCAST_RX}\|\s+${Q2_UCAST_TX}\|\s+${Q2_MCAST_TX}\|\s+${Q2_DISCARD}
+  ^2p\s+${Q2P_MCAST_RX}\|\s+${Q2P_MCAST_TX}
+  ^3\|\s+${Q3_UCAST_RX}\|\s+${Q3_MCAST_RX}\|\s+${Q3_UCAST_TX}\|\s+${Q3_MCAST_TX}\|\s+${Q3_DISCARD}
+  ^3p\s+${Q3P_MCAST_RX}\|\s+${Q3P_MCAST_TX} -> Record

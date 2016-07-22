@@ -1,0 +1,207 @@
+Ethernet1/1 is up
+ Dedicated Interface
+  Belongs to Po100
+  Hardware: 1000/10000 Ethernet, address: 8c60.1111.1111 (bia 8c60.1111.1111)
+  Description: Insert_description_here
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec
+  reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA
+  Port mode is trunk
+  full-duplex, 1000 Mb/s, media type is 10G
+  Beacon is turned off
+  Input flow-control is off, output flow-control is off
+  Rate mode is dedicated
+  Switchport monitor is off
+  EtherType is 0x8100
+  Last link flapped 26week(s) 1day(s)
+  Last clearing of "show interface" counters 15w3d
+  30 seconds input rate 9296 bits/sec, 8 packets/sec
+  30 seconds output rate 8880 bits/sec, 9 packets/sec
+  Load-Interval #2: 5 minute (300 seconds)
+    input rate 7.98 Kbps, 7 pps; output rate 8.80 Kbps, 8 pps
+  RX
+    919005386 unicast packets  627296 multicast packets  0 broadcast packets
+    919632682 input packets  198036775178 bytes
+    40079123 jumbo packets  0 storm suppression bytes
+    0 runts  0 giants  0 CRC  0 no buffer
+    0 input error  0 short frame  0 overrun   0 underrun  0 ignored
+    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop
+    0 input with dribble  0 input discard
+    0 Rx pause
+  TX
+    1227283674 unicast packets  9913828 multicast packets  19630374 broadcast packets
+    1256827876 output packets  683755065661 bytes
+    309073199 jumbo packets
+    0 output errors  0 collision  0 deferred  0 late collision
+    0 lost carrier  0 no carrier  0 babble 0 output discard
+    0 Tx pause
+  0 interface resets
+
+Ethernet1/2 is up
+ Dedicated Interface
+  Belongs to Po200
+  Hardware: 1000/10000 Ethernet, address: 8c60.1111.2222 (bia 8c60.1111.2222)
+  Description: Insert_description_here
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec
+  reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA
+  Port mode is trunk
+  full-duplex, 1000 Mb/s, media type is 10G
+  Beacon is turned off
+  Input flow-control is off, output flow-control is off
+  Rate mode is dedicated
+  Switchport monitor is off
+  EtherType is 0x8100
+  Last link flapped 26week(s) 6day(s)
+  Last clearing of "show interface" counters 15w3d
+  30 seconds input rate 379192 bits/sec, 63 packets/sec
+  30 seconds output rate 725928 bits/sec, 124 packets/sec
+  Load-Interval #2: 5 minute (300 seconds)
+    input rate 156.91 Kbps, 24 pps; output rate 354.91 Kbps, 40 pps
+  RX
+    619489349 unicast packets  627294 multicast packets  0 broadcast packets
+    620116643 input packets  101109024137 bytes
+    14057606 jumbo packets  0 storm suppression bytes
+    0 runts  0 giants  0 CRC  0 no buffer
+    0 input error  0 short frame  0 overrun   0 underrun  0 ignored
+    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop
+    0 input with dribble  0 input discard
+    0 Rx pause
+  TX
+    743350379 unicast packets  9913828 multicast packets  19630374 broadcast packets
+    772894581 output packets  286635552497 bytes
+    115260454 jumbo packets
+    0 output errors  0 collision  0 deferred  0 late collision
+    0 lost carrier  0 no carrier  0 babble 0 output discard
+    0 Tx pause
+  0 interface resets
+
+Ethernet1/3 is down (SFP validation failed)
+ Dedicated Interface
+  Belongs to Po101
+  Hardware: 1000/10000 Ethernet, address: 8c60.1111.3333 (bia 8c60.1111.3333)
+  Description: Insert_description_here
+  MTU 1500 bytes, BW 10000000 Kbit, DLY 10 usec
+  reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA
+  Port mode is trunk
+  auto-duplex, 10 Gb/s, media type is 10G
+  Beacon is turned off
+  Input flow-control is off, output flow-control is off
+  Rate mode is dedicated
+  Switchport monitor is off
+  EtherType is 0x8100
+  Last link flapped 27week(s) 6day(s)
+  Last clearing of "show interface" counters 15w3d
+  30 seconds input rate 0 bits/sec, 0 packets/sec
+  30 seconds output rate 0 bits/sec, 0 packets/sec
+  Load-Interval #2: 5 minute (300 seconds)
+    input rate 0 bps, 0 pps; output rate 0 bps, 0 pps
+  RX
+    0 unicast packets  0 multicast packets  0 broadcast packets
+    0 input packets  0 bytes
+    0 jumbo packets  0 storm suppression bytes
+    0 runts  0 giants  0 CRC  0 no buffer
+    0 input error  0 short frame  0 overrun   0 underrun  0 ignored
+    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop
+    0 input with dribble  0 input discard
+    0 Rx pause
+  TX
+    0 unicast packets  0 multicast packets  0 broadcast packets
+    0 output packets  0 bytes
+    0 jumbo packets
+    0 output errors  0 collision  0 deferred  0 late collision
+    0 lost carrier  0 no carrier  0 babble 0 output discard
+    0 Tx pause
+  0 interface resets
+
+port-channel300 is up
+ vPC Status: Up, vPC number: 300
+  Hardware: Port-Channel, address: 8c60.1111.7777 (bia 8c60.1111.7777)
+  Description: Insert_description_here
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec
+  reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA
+  Port mode is trunk
+  full-duplex, 1000 Mb/s
+  Input flow-control is off, output flow-control is off
+  Switchport monitor is off
+  EtherType is 0x8100
+  Members in this channel: Eth1/8
+  30 seconds input rate 10928 bits/sec, 6 packets/sec
+  30 seconds output rate 12928 bits/sec, 15 packets/sec
+  Load-Interval #2: 5 minute (300 seconds)
+    input rate 11.44 Kbps, 5 pps; output rate 11.47 Kbps, 10 pps
+  RX
+    94459999 unicast packets  313886 multicast packets  0 broadcast packets
+    94773885 input packets  12881853160 bytes
+    2750709 jumbo packets  0 storm suppression bytes
+    0 runts  0 giants  0 CRC  0 no buffer
+    0 input error  0 short frame  0 overrun   0 underrun  0 ignored
+    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop
+    0 input with dribble  0 input discard
+    0 Rx pause
+  TX
+    120644282 unicast packets  9891656 multicast packets  9265605 broadcast packets
+    139801543 output packets  11476607838 bytes
+    55721 jumbo packets
+    0 output errors  0 collision  0 deferred  0 late collision
+    0 lost carrier  0 no carrier  0 babble 0 output discard
+    0 Tx pause
+  0 interface resets
+
+port-channel301 is up
+ vPC Status: Up, vPC number: 301
+  Hardware: Port-Channel, address: 8c60.1111.4444 (bia 8c60.1111.4444)
+  Description: Insert_description_here
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec
+  reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA
+  Port mode is trunk
+  full-duplex, 1000 Mb/s
+  Input flow-control is off, output flow-control is off
+  Switchport monitor is off
+  EtherType is 0x8100
+  Members in this channel: Eth1/31
+  30 seconds input rate 192608 bits/sec, 19 packets/sec
+  30 seconds output rate 225728 bits/sec, 150 packets/sec
+  Load-Interval #2: 5 minute (300 seconds)
+    input rate 49.56 Kbps, 3 pps; output rate 222.52 Kbps, 124 pps
+  RX
+    324372292 unicast packets  314167 multicast packets  0 broadcast packets
+    324686459 input packets  348380120816 bytes
+    0 jumbo packets  0 storm suppression bytes
+    0 runts  0 giants  0 CRC  0 no buffer
+    0 input error  0 short frame  0 overrun   0 underrun  0 ignored
+    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop
+    0 input with dribble  0 input discard
+    0 Rx pause
+  TX
+    1481306721 unicast packets  844938 multicast packets  19432 broadcast packets
+    1482171091 output packets  245220341696 bytes
+    0 jumbo packets
+    0 output errors  0 collision  0 deferred  0 late collision
+    0 lost carrier  0 no carrier  0 babble 0 output discard
+    0 Tx pause
+  0 interface resets
+
+mgmt0 is up
+  Hardware: GigabitEthernet, address: 8c60.1111.5555 (bia 8c60.1111.5555)
+  Internet Address is 192.168.100.50/24
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec
+  reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA
+  full-duplex, 1000 Mb/s
+  EtherType is 0x0000
+  1 minute input rate 2744 bits/sec, 3 packets/sec
+  1 minute output rate 11752 bits/sec, 2 packets/sec
+  Rx
+    48409711 input packets 44667097 unicast packets 1872838 multicast packets
+    1869776 broadcast packets 4775794747 bytes
+  Tx
+    46592126 output packets 44866996 unicast packets 1723761 multicast packets
+    1369 broadcast packets 9619925737 bytes
+
+Vlan1 is administratively down, line protocol is down
+  Hardware is EtherSVI, address is  8c60.1111.6666
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec

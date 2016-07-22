@@ -1,0 +1,8 @@
+Value INTF_NAME (\S+)
+Value INPUT_PACKETS (\d+)
+Value OUTPUT_PACKETS (\d+)
+
+Start
+  ^${INTF_NAME}
+  ^\s+${INPUT_PACKETS} input packets
+  ^\s+${OUTPUT_PACKETS} output packets -> Record

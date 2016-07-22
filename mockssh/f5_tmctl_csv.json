@@ -1,0 +1,722 @@
+[
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 18193.0,
+      "server_side_traffic.tot_conns": 7270.0,
+      "server_side_traffic.bytes_in": 5706119.0,
+      "server_side_traffic.pkts_in": 18060.0,
+      "client_side_traffic.tot_conns": 7270.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 5706119.0,
+      "client_side_traffic.pkts_out": 18060.0,
+      "server_side_traffic.bytes_out": 3652187.0,
+      "server_side_traffic.pkts_out": 18193.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 7270.0,
+      "client_side_traffic.bytes_in": 3652187.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 0.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 0,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 19313.0,
+      "server_side_traffic.tot_conns": 7173.0,
+      "server_side_traffic.bytes_in": 4934345.0,
+      "server_side_traffic.pkts_in": 16811.0,
+      "client_side_traffic.tot_conns": 7177.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 4934345.0,
+      "client_side_traffic.pkts_out": 16811.0,
+      "server_side_traffic.bytes_out": 3435154.0,
+      "server_side_traffic.pkts_out": 19313.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 7164.0,
+      "client_side_traffic.bytes_in": 3435154.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 7.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 1.0,
+      "server_side_traffic.max_conns": 7.0
+    },
+    "tag": {
+      "instance": 1,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 22123.0,
+      "server_side_traffic.tot_conns": 8040.0,
+      "server_side_traffic.bytes_in": 6831416.0,
+      "server_side_traffic.pkts_in": 21505.0,
+      "client_side_traffic.tot_conns": 8040.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 6831416.0,
+      "client_side_traffic.pkts_out": 21505.0,
+      "server_side_traffic.bytes_out": 4701591.0,
+      "server_side_traffic.pkts_out": 22123.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 8040.0,
+      "client_side_traffic.bytes_in": 4701591.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 2.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 2,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 23826.0,
+      "server_side_traffic.tot_conns": 10662.0,
+      "server_side_traffic.bytes_in": 8734920.0,
+      "server_side_traffic.pkts_in": 28381.0,
+      "client_side_traffic.tot_conns": 10663.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 8734920.0,
+      "client_side_traffic.pkts_out": 28381.0,
+      "server_side_traffic.bytes_out": 5604455.0,
+      "server_side_traffic.pkts_out": 23826.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 10661.0,
+      "client_side_traffic.bytes_in": 5604455.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 7.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 3.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 3,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 44932.0,
+      "server_side_traffic.tot_conns": 38579.0,
+      "server_side_traffic.bytes_in": 11472450.0,
+      "server_side_traffic.pkts_in": 77448.0,
+      "client_side_traffic.tot_conns": 38581.0,
+      "client_side_traffic.cur_conns": 1.0,
+      "client_side_traffic.bytes_out": 11472450.0,
+      "client_side_traffic.pkts_out": 77448.0,
+      "server_side_traffic.bytes_out": 6668642.0,
+      "server_side_traffic.pkts_out": 44932.0,
+      "curr_assist_conn": 1.0,
+      "server_side_traffic.cur_conns": 1.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 38564.0,
+      "client_side_traffic.bytes_in": 6668642.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 8.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 4.0,
+      "server_side_traffic.max_conns": 8.0
+    },
+    "tag": {
+      "instance": 4,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 20768.0,
+      "server_side_traffic.tot_conns": 10269.0,
+      "server_side_traffic.bytes_in": 7105840.0,
+      "server_side_traffic.pkts_in": 24822.0,
+      "client_side_traffic.tot_conns": 10271.0,
+      "client_side_traffic.cur_conns": 2.0,
+      "client_side_traffic.bytes_out": 7105840.0,
+      "client_side_traffic.pkts_out": 24822.0,
+      "server_side_traffic.bytes_out": 4511808.0,
+      "server_side_traffic.pkts_out": 20768.0,
+      "curr_assist_conn": 2.0,
+      "server_side_traffic.cur_conns": 2.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 10264.0,
+      "client_side_traffic.bytes_in": 4511808.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 5.0,
+      "server_side_traffic.max_conns": 5.0
+    },
+    "tag": {
+      "instance": 5,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 19731.0,
+      "server_side_traffic.tot_conns": 9888.0,
+      "server_side_traffic.bytes_in": 5577518.0,
+      "server_side_traffic.pkts_in": 21516.0,
+      "client_side_traffic.tot_conns": 9888.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 5577518.0,
+      "client_side_traffic.pkts_out": 21516.0,
+      "server_side_traffic.bytes_out": 3701575.0,
+      "server_side_traffic.pkts_out": 19731.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 9881.0,
+      "client_side_traffic.bytes_in": 3701575.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 6.0,
+      "server_side_traffic.max_conns": 5.0
+    },
+    "tag": {
+      "instance": 6,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 23710.0,
+      "server_side_traffic.tot_conns": 10173.0,
+      "server_side_traffic.bytes_in": 8129175.0,
+      "server_side_traffic.pkts_in": 26359.0,
+      "client_side_traffic.tot_conns": 10174.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 8129175.0,
+      "client_side_traffic.pkts_out": 26359.0,
+      "server_side_traffic.bytes_out": 5294330.0,
+      "server_side_traffic.pkts_out": 23710.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 10169.0,
+      "client_side_traffic.bytes_in": 5294330.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 7.0,
+      "server_side_traffic.max_conns": 5.0
+    },
+    "tag": {
+      "instance": 7,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 18572.0,
+      "server_side_traffic.tot_conns": 10139.0,
+      "server_side_traffic.bytes_in": 6425367.0,
+      "server_side_traffic.pkts_in": 23134.0,
+      "client_side_traffic.tot_conns": 10138.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 6425367.0,
+      "client_side_traffic.pkts_out": 23134.0,
+      "server_side_traffic.bytes_out": 3972429.0,
+      "server_side_traffic.pkts_out": 18572.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 10131.0,
+      "client_side_traffic.bytes_in": 3972429.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 8.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 8,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 22829.0,
+      "server_side_traffic.tot_conns": 18867.0,
+      "server_side_traffic.bytes_in": 8083765.0,
+      "server_side_traffic.pkts_in": 35767.0,
+      "client_side_traffic.tot_conns": 18867.0,
+      "client_side_traffic.cur_conns": 1.0,
+      "client_side_traffic.bytes_out": 8083765.0,
+      "client_side_traffic.pkts_out": 35767.0,
+      "server_side_traffic.bytes_out": 4960716.0,
+      "server_side_traffic.pkts_out": 22829.0,
+      "curr_assist_conn": 1.0,
+      "server_side_traffic.cur_conns": 1.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 18867.0,
+      "client_side_traffic.bytes_in": 4960716.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 8.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 9.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 9,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 23682.0,
+      "server_side_traffic.tot_conns": 10944.0,
+      "server_side_traffic.bytes_in": 6908571.0,
+      "server_side_traffic.pkts_in": 25209.0,
+      "client_side_traffic.tot_conns": 10943.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 6908571.0,
+      "client_side_traffic.pkts_out": 25209.0,
+      "server_side_traffic.bytes_out": 4722506.0,
+      "server_side_traffic.pkts_out": 23682.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 10931.0,
+      "client_side_traffic.bytes_in": 4722506.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 10.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 10,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 28813.0,
+      "server_side_traffic.tot_conns": 16618.0,
+      "server_side_traffic.bytes_in": 9152759.0,
+      "server_side_traffic.pkts_in": 40980.0,
+      "client_side_traffic.tot_conns": 16619.0,
+      "client_side_traffic.cur_conns": 2.0,
+      "client_side_traffic.bytes_out": 9152759.0,
+      "client_side_traffic.pkts_out": 40980.0,
+      "server_side_traffic.bytes_out": 5875004.0,
+      "server_side_traffic.pkts_out": 28813.0,
+      "curr_assist_conn": 2.0,
+      "server_side_traffic.cur_conns": 2.0,
+      "slot_id": 1.0,
+      "tot_assist_conn": 16618.0,
+      "client_side_traffic.bytes_in": 5875004.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 11.0,
+      "server_side_traffic.max_conns": 5.0
+    },
+    "tag": {
+      "instance": 11,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 304234.0,
+      "server_side_traffic.tot_conns": 7365.0,
+      "server_side_traffic.bytes_in": 43831797.0,
+      "server_side_traffic.pkts_in": 224560.0,
+      "client_side_traffic.tot_conns": 7363.0,
+      "client_side_traffic.cur_conns": 1.0,
+      "client_side_traffic.bytes_out": 43831797.0,
+      "client_side_traffic.pkts_out": 224560.0,
+      "server_side_traffic.bytes_out": 37464050.0,
+      "server_side_traffic.pkts_out": 304234.0,
+      "curr_assist_conn": 1.0,
+      "server_side_traffic.cur_conns": 1.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 7359.0,
+      "client_side_traffic.bytes_in": 37464050.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 0.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 12,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 215488.0,
+      "server_side_traffic.tot_conns": 7624.0,
+      "server_side_traffic.bytes_in": 26893126.0,
+      "server_side_traffic.pkts_in": 213278.0,
+      "client_side_traffic.tot_conns": 7624.0,
+      "client_side_traffic.cur_conns": 1.0,
+      "client_side_traffic.bytes_out": 26893126.0,
+      "client_side_traffic.pkts_out": 213278.0,
+      "server_side_traffic.bytes_out": 29161993.0,
+      "server_side_traffic.pkts_out": 215488.0,
+      "curr_assist_conn": 1.0,
+      "server_side_traffic.cur_conns": 1.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 7624.0,
+      "client_side_traffic.bytes_in": 29161993.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 7.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 1.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 13,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 20573.0,
+      "server_side_traffic.tot_conns": 9157.0,
+      "server_side_traffic.bytes_in": 6162766.0,
+      "server_side_traffic.pkts_in": 21806.0,
+      "client_side_traffic.tot_conns": 9155.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 6162766.0,
+      "client_side_traffic.pkts_out": 21806.0,
+      "server_side_traffic.bytes_out": 4159971.0,
+      "server_side_traffic.pkts_out": 20573.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 9147.0,
+      "client_side_traffic.bytes_in": 4159971.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 5.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 2.0,
+      "server_side_traffic.max_conns": 5.0
+    },
+    "tag": {
+      "instance": 14,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 23227.0,
+      "server_side_traffic.tot_conns": 8981.0,
+      "server_side_traffic.bytes_in": 7983609.0,
+      "server_side_traffic.pkts_in": 24576.0,
+      "client_side_traffic.tot_conns": 8985.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 7983609.0,
+      "client_side_traffic.pkts_out": 24576.0,
+      "server_side_traffic.bytes_out": 5177906.0,
+      "server_side_traffic.pkts_out": 23227.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 8978.0,
+      "client_side_traffic.bytes_in": 5177906.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 3.0,
+      "server_side_traffic.max_conns": 5.0
+    },
+    "tag": {
+      "instance": 15,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 22310.0,
+      "server_side_traffic.tot_conns": 16037.0,
+      "server_side_traffic.bytes_in": 6726183.0,
+      "server_side_traffic.pkts_in": 29683.0,
+      "client_side_traffic.tot_conns": 16038.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 6726183.0,
+      "client_side_traffic.pkts_out": 29683.0,
+      "server_side_traffic.bytes_out": 4423655.0,
+      "server_side_traffic.pkts_out": 22310.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 16033.0,
+      "client_side_traffic.bytes_in": 4423655.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 4.0,
+      "server_side_traffic.max_conns": 5.0
+    },
+    "tag": {
+      "instance": 16,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 26345.0,
+      "server_side_traffic.tot_conns": 15467.0,
+      "server_side_traffic.bytes_in": 4684044.0,
+      "server_side_traffic.pkts_in": 31071.0,
+      "client_side_traffic.tot_conns": 15466.0,
+      "client_side_traffic.cur_conns": 1.0,
+      "client_side_traffic.bytes_out": 4684044.0,
+      "client_side_traffic.pkts_out": 31071.0,
+      "server_side_traffic.bytes_out": 3294694.0,
+      "server_side_traffic.pkts_out": 26345.0,
+      "curr_assist_conn": 1.0,
+      "server_side_traffic.cur_conns": 1.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 15466.0,
+      "client_side_traffic.bytes_in": 3294694.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 7.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 5.0,
+      "server_side_traffic.max_conns": 7.0
+    },
+    "tag": {
+      "instance": 17,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 32914.0,
+      "server_side_traffic.tot_conns": 19576.0,
+      "server_side_traffic.bytes_in": 9223084.0,
+      "server_side_traffic.pkts_in": 44651.0,
+      "client_side_traffic.tot_conns": 19568.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 9223084.0,
+      "client_side_traffic.pkts_out": 44651.0,
+      "server_side_traffic.bytes_out": 5673523.0,
+      "server_side_traffic.pkts_out": 32914.0,
+      "curr_assist_conn": 1.0,
+      "server_side_traffic.cur_conns": 1.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 19559.0,
+      "client_side_traffic.bytes_in": 5673523.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 7.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 6.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 18,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 31278.0,
+      "server_side_traffic.tot_conns": 19285.0,
+      "server_side_traffic.bytes_in": 8414342.0,
+      "server_side_traffic.pkts_in": 42282.0,
+      "client_side_traffic.tot_conns": 19287.0,
+      "client_side_traffic.cur_conns": 1.0,
+      "client_side_traffic.bytes_out": 8414342.0,
+      "client_side_traffic.pkts_out": 42282.0,
+      "server_side_traffic.bytes_out": 5241736.0,
+      "server_side_traffic.pkts_out": 31278.0,
+      "curr_assist_conn": 1.0,
+      "server_side_traffic.cur_conns": 1.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 19285.0,
+      "client_side_traffic.bytes_in": 5241736.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 7.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 7.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 19,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 30989.0,
+      "server_side_traffic.tot_conns": 20624.0,
+      "server_side_traffic.bytes_in": 9654240.0,
+      "server_side_traffic.pkts_in": 45255.0,
+      "client_side_traffic.tot_conns": 20624.0,
+      "client_side_traffic.cur_conns": 2.0,
+      "client_side_traffic.bytes_out": 9654240.0,
+      "client_side_traffic.pkts_out": 45255.0,
+      "server_side_traffic.bytes_out": 5646595.0,
+      "server_side_traffic.pkts_out": 30989.0,
+      "curr_assist_conn": 2.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 20624.0,
+      "client_side_traffic.bytes_in": 5646595.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 7.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 8.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 20,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 24080.0,
+      "server_side_traffic.tot_conns": 11432.0,
+      "server_side_traffic.bytes_in": 8717374.0,
+      "server_side_traffic.pkts_in": 29050.0,
+      "client_side_traffic.tot_conns": 11432.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 8717374.0,
+      "client_side_traffic.pkts_out": 29050.0,
+      "server_side_traffic.bytes_out": 5530866.0,
+      "server_side_traffic.pkts_out": 24080.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 11432.0,
+      "client_side_traffic.bytes_in": 5530866.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 6.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 9.0,
+      "server_side_traffic.max_conns": 5.0
+    },
+    "tag": {
+      "instance": 21,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 29444.0,
+      "server_side_traffic.tot_conns": 14001.0,
+      "server_side_traffic.bytes_in": 11114323.0,
+      "server_side_traffic.pkts_in": 36745.0,
+      "client_side_traffic.tot_conns": 13997.0,
+      "client_side_traffic.cur_conns": 0.0,
+      "client_side_traffic.bytes_out": 11114323.0,
+      "client_side_traffic.pkts_out": 36745.0,
+      "server_side_traffic.bytes_out": 6867416.0,
+      "server_side_traffic.pkts_out": 29444.0,
+      "curr_assist_conn": 0.0,
+      "server_side_traffic.cur_conns": 0.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 13989.0,
+      "client_side_traffic.bytes_in": 6867416.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 7.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 10.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 22,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  },
+  {
+    "fields": {
+      "client_side_traffic.pkts_in": 36190.0,
+      "server_side_traffic.tot_conns": 21079.0,
+      "server_side_traffic.bytes_in": 10732085.0,
+      "server_side_traffic.pkts_in": 49862.0,
+      "client_side_traffic.tot_conns": 21080.0,
+      "client_side_traffic.cur_conns": 1.0,
+      "client_side_traffic.bytes_out": 10732085.0,
+      "client_side_traffic.pkts_out": 49862.0,
+      "server_side_traffic.bytes_out": 6774712.0,
+      "server_side_traffic.pkts_out": 36190.0,
+      "curr_assist_conn": 1.0,
+      "server_side_traffic.cur_conns": 1.0,
+      "slot_id": 2.0,
+      "tot_assist_conn": 21079.0,
+      "client_side_traffic.bytes_in": 6774712.0,
+      "hardware_syncookies_detected": 0.0,
+      "client_side_traffic.max_conns": 7.0,
+      "hardware_syncookies_generated": 0.0,
+      "tmm": 11.0,
+      "server_side_traffic.max_conns": 6.0
+    },
+    "tag": {
+      "instance": 23,
+      "host": "localhost"
+    },
+    "command": "tmctl -c pva_stat",
+    "timestamp": 1469205290
+  }
+]

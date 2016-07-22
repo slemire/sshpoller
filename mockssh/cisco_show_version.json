@@ -1,0 +1,15 @@
+[
+  {
+    "fields": {
+      "bios": "version 3.6.0",
+      "kickstart": "version 5.2(1)N1(9)",
+      "system": "version 5.2(1)N1(9)"
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show version",
+    "timestamp": 1469202654
+  }
+]

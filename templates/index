@@ -7,3 +7,7 @@ Template, Hostname, Platform, Command
 juniper_show_version.template, .*, juniper, sh[[ow]] ver[[sion]]
 juniper_show_interfaces.template, .*, juniper, sh[[ow]] int[[erfaces]] ext[[ensive]]
 fortinet_diag_hardware_sysinfo_memory.template, .*, fortinet, diag hardware sysinfo memory
+cisco_show_version.template, .*, cisco, sh[[ow]] ver[[sion]]
+cisco_show_interface.template, .*, cisco, sh[[ow]] int[[erface]]
+cisco_show_platform.template, .*, cisco, show pl[[atform]] soft[[ware]] qd info count[[ers]]
+f5_show_sys_tmm.template, .*, f5, show sys tmm-info

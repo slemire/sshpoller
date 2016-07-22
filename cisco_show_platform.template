@@ -1,0 +1,6 @@
+Value MODEL (.*)
+Value OS (.*)
+
+Start
+  ^Model:\s+${MODEL}
+  ^JUNOS Base OS boot\s+\[${OS}\]

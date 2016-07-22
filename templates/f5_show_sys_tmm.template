@@ -1,0 +1,14 @@
+Value TMM_INSTANCE (\S+)
+Value MEMORY_TOTAL (\S+)
+Value MEMORY_USED (\S+)
+Value CPU_5_SEC (\d+)
+Value CPU_1_MIN (\d+)
+Value CPU_5_MIN (\d+)
+
+Start
+  ^Sys::TMM: ${TMM_INSTANCE}
+  ^\s+Total\s${MEMORY_TOTAL}
+  ^\s+Used\s${MEMORY_USED}
+  ^\s+Last 5 Seconds\s+${CPU_5_SEC}
+  ^\s+Last 1 Minute\s+${CPU_1_MIN}
+  ^\s+Last 5 Minutes\s+${CPU_5_MIN} -> Record

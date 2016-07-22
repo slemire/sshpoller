@@ -1,0 +1,8 @@
+Value BIOS (.*)
+Value KICKSTART (.*)
+Value SYSTEM (.*)
+
+Start
+  ^\s+BIOS:\s+${BIOS}
+  ^\s+kickstart:\s+${KICKSTART}
+  ^\s+system:\s+${SYSTEM}

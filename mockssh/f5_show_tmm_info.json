@@ -1,0 +1,162 @@
+[
+  {
+    "fields": {
+      "memory_used": "",
+      "cpu_5_sec": 4.0,
+      "cpu_1_min": 4.0,
+      "memory_total": "",
+      "tmm_instance": 1.0,
+      "cpu_5_min": 4.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show sys tmm-info",
+    "timestamp": 1469204090
+  },
+  {
+    "fields": {
+      "memory_used": "",
+      "cpu_5_sec": 1.0,
+      "cpu_1_min": 1.0,
+      "memory_total": "",
+      "tmm_instance": 1.2,
+      "cpu_5_min": 1.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show sys tmm-info",
+    "timestamp": 1469204090
+  },
+  {
+    "fields": {
+      "memory_used": "",
+      "cpu_5_sec": 1.0,
+      "cpu_1_min": 1.0,
+      "memory_total": "",
+      "tmm_instance": 1.4,
+      "cpu_5_min": 1.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show sys tmm-info",
+    "timestamp": 1469204090
+  },
+  {
+    "fields": {
+      "memory_used": "",
+      "cpu_5_sec": 1.0,
+      "cpu_1_min": 1.0,
+      "memory_total": "",
+      "tmm_instance": 1.6,
+      "cpu_5_min": 1.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show sys tmm-info",
+    "timestamp": 1469204090
+  },
+  {
+    "fields": {
+      "memory_used": "",
+      "cpu_5_sec": 1.0,
+      "cpu_1_min": 1.0,
+      "memory_total": "",
+      "tmm_instance": 1.8,
+      "cpu_5_min": 1.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show sys tmm-info",
+    "timestamp": 1469204090
+  },
+  {
+    "fields": {
+      "memory_used": "",
+      "cpu_5_sec": 4.0,
+      "cpu_1_min": 4.0,
+      "memory_total": "",
+      "tmm_instance": 2.0,
+      "cpu_5_min": 4.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show sys tmm-info",
+    "timestamp": 1469204090
+  },
+  {
+    "fields": {
+      "memory_used": "",
+      "cpu_5_sec": 1.0,
+      "cpu_1_min": 1.0,
+      "memory_total": "",
+      "tmm_instance": 2.2,
+      "cpu_5_min": 1.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show sys tmm-info",
+    "timestamp": 1469204090
+  },
+  {
+    "fields": {
+      "memory_used": "",
+      "cpu_5_sec": 1.0,
+      "cpu_1_min": 1.0,
+      "memory_total": "",
+      "tmm_instance": 2.4,
+      "cpu_5_min": 1.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show sys tmm-info",
+    "timestamp": 1469204090
+  },
+  {
+    "fields": {
+      "memory_used": "",
+      "cpu_5_sec": 1.0,
+      "cpu_1_min": 1.0,
+      "memory_total": "",
+      "tmm_instance": 2.6,
+      "cpu_5_min": 1.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show sys tmm-info",
+    "timestamp": 1469204090
+  },
+  {
+    "fields": {
+      "memory_used": "",
+      "cpu_5_sec": 1.0,
+      "cpu_1_min": 1.0,
+      "memory_total": "",
+      "tmm_instance": 2.8,
+      "cpu_5_min": 1.0
+    },
+    "tag": {
+      "host": "localhost",
+      "command": ""
+    },
+    "command": "show sys tmm-info",
+    "timestamp": 1469204090
+  }
+]
