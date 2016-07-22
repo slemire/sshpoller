@@ -1,0 +1,73 @@
+{
+  "series": [
+    {
+      "values": [
+        [
+          "2016-07-22T16:11:59Z",
+          "intf_name",
+          "localhost",
+          919632682.0,
+          "Ethernet1/1",
+          1256827876.0
+        ],
+        [
+          "2016-07-22T16:11:59Z",
+          "intf_name",
+          "localhost",
+          324686459.0,
+          "port-channel301",
+          1482171091.0
+        ],
+        [
+          "2016-07-22T16:11:59Z",
+          "intf_name",
+          "localhost",
+          94773885.0,
+          "port-channel300",
+          139801543.0
+        ],
+        [
+          "2016-07-22T16:11:59Z",
+          "intf_name",
+          "localhost",
+          48409711.0,
+          "mgmt0",
+          46592126.0
+        ],
+        [
+          "2016-07-22T16:11:59Z",
+          "intf_name",
+          "localhost",
+          null,
+          "Vlan1",
+          null
+        ],
+        [
+          "2016-07-22T16:11:59Z",
+          "intf_name",
+          "localhost",
+          0,
+          "Ethernet1/3",
+          0
+        ],
+        [
+          "2016-07-22T16:11:59Z",
+          "intf_name",
+          "localhost",
+          620116643.0,
+          "Ethernet1/2",
+          772894581.0
+        ]
+      ],
+      "name": "show interface",
+      "columns": [
+        "time",
+        "command",
+        "host",
+        "input_packets",
+        "intf_name",
+        "output_packets"
+      ]
+    }
+  ]
+}

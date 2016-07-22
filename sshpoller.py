@@ -128,6 +128,8 @@ class SSH_Poller:
                 data['tag'] = {'host': self.hostname, 'command': command['tag']}
                 data['command'] = command['command']
                 data['fields'] = dict((k, float_if_possible(v)) for (k, v) in field.items())
+                if command['tag']:
+                    data['tag'][command['tag']] = data['fields'][command['tag']]
                 data['timestamp'] = timestamp
                 self.data_list.append(data)
 
@@ -196,6 +198,7 @@ class SSH_Poller:
 
         client = InfluxDBClient(self.db_host, self.db_port, self.db_user, self.db_password, self.db_name)
 
+        # TODO: Refactor to batch to optimize writes to the DB
         for data in self.data_list:
 
             measurement = data['command']
@@ -206,11 +209,10 @@ class SSH_Poller:
                     'measurement': measurement,
                     'tags': data['tag'],
                     'fields': data['fields'],
-                    'timestamp': data['timestamp']
+                    'time': data['timestamp']
                 }
             ]
 
-            print json.dumps(json_body, indent=2)
             client.write_points(json_body, time_precision='s')
 
 def quotes_in_str(value):

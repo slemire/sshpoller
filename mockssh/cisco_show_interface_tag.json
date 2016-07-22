@@ -1,0 +1,100 @@
+[
+  {
+    "fields": {
+      "input_packets": 919632682.0,
+      "output_packets": 1256827876.0,
+      "intf_name": "Ethernet1/1"
+    },
+    "tag": {
+      "host": "localhost",
+      "command": "intf_name",
+      "intf_name": "Ethernet1/1"
+    },
+    "command": "show interface",
+    "timestamp": 1469203919
+  },
+  {
+    "fields": {
+      "input_packets": 620116643.0,
+      "output_packets": 772894581.0,
+      "intf_name": "Ethernet1/2"
+    },
+    "tag": {
+      "host": "localhost",
+      "command": "intf_name",
+      "intf_name": "Ethernet1/2"
+    },
+    "command": "show interface",
+    "timestamp": 1469203919
+  },
+  {
+    "fields": {
+      "input_packets": 0.0,
+      "output_packets": 0.0,
+      "intf_name": "Ethernet1/3"
+    },
+    "tag": {
+      "host": "localhost",
+      "command": "intf_name",
+      "intf_name": "Ethernet1/3"
+    },
+    "command": "show interface",
+    "timestamp": 1469203919
+  },
+  {
+    "fields": {
+      "input_packets": 94773885.0,
+      "output_packets": 139801543.0,
+      "intf_name": "port-channel300"
+    },
+    "tag": {
+      "host": "localhost",
+      "command": "intf_name",
+      "intf_name": "port-channel300"
+    },
+    "command": "show interface",
+    "timestamp": 1469203919
+  },
+  {
+    "fields": {
+      "input_packets": 324686459.0,
+      "output_packets": 1482171091.0,
+      "intf_name": "port-channel301"
+    },
+    "tag": {
+      "host": "localhost",
+      "command": "intf_name",
+      "intf_name": "port-channel301"
+    },
+    "command": "show interface",
+    "timestamp": 1469203919
+  },
+  {
+    "fields": {
+      "input_packets": 48409711.0,
+      "output_packets": 46592126.0,
+      "intf_name": "mgmt0"
+    },
+    "tag": {
+      "host": "localhost",
+      "command": "intf_name",
+      "intf_name": "mgmt0"
+    },
+    "command": "show interface",
+    "timestamp": 1469203919
+  },
+  {
+    "fields": {
+      "input_packets": "",
+      "output_packets": "",
+      "intf_name": "Vlan1"
+    },
+    "tag": {
+      "host": "localhost",
+      "command": "intf_name",
+      "intf_name": "Vlan1"
+    },
+    "command": "show interface",
+    "timestamp": 1469203919
+  }
+]
