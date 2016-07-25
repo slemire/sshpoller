@@ -10,6 +10,7 @@ install:
   - cd textfsm
   - python setup.py install
   - cd ..
+  - sudo apt-get install influxdb
 
 script:
   - coverage run test_sshpoller.py

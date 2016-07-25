@@ -1,2 +1,3 @@
 influxdb>=2.12.0
 netmiko>=0.5.1
+MockSSH==1.4.3
