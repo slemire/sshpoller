@@ -31,7 +31,7 @@ template_dir = 'templates'
 class SSH_PollerTest_Basic(unittest.TestCase):
     def setUp(self):
         pass
-    
+
     def tearDown(self):
         pass
 
@@ -71,23 +71,14 @@ class SSH_PollerTest_Basic(unittest.TestCase):
 class SSH_PollerTest_MockData(unittest.TestCase):
     def setUp(self):
         pass
-    
+
     def tearDown(self):
-        try:
-            for name in dir(sshpoller.SSH_Poller):
-                try:
-                    t = getattr(sshpoller.SSH_Poller, name)
-                    print t
-                    if 'sshpoller' in t:
-                        delattr(sshpoller.SSH_Poller, name)
-                except:
-                    pass
-        except:
-            pass
+        pass
 
     def test_parse_fsm_cisco_show_version(self):
         """ Test parse_fsm() function
         """
+
         # Cisco 'show version'
         task = {
             'hostname': 'localhost',
@@ -97,18 +88,19 @@ class SSH_PollerTest_MockData(unittest.TestCase):
             'device_type': 'cisco_nxos',
             'parser_mode': 'fsm',
             'precommands': '',
+            'interval': 0,
             'commands': ['show version'],
         }
         poller = sshpoller.SSH_Poller(task)
         mock_output = open(os.path.join('mockssh', 'cisco_show_version.txt'), 'r').read()
         expected_results = json.loads(open(os.path.join('mockssh', 'cisco_show_version.json'), 'r').read())
         poller.parse_fsm(mock_output, {'command': 'show version', 'tag': ''})
-        
+
         # Remove timestamp since it'll never match
         for item in poller.data_list:
             item.pop('timestamp', None)
         for item in expected_results:
-            item.pop('timestamp', None)    
+            item.pop('timestamp', None)
 
         self.assertEqual(json.dumps(poller.data_list), json.dumps(expected_results))
 
@@ -125,18 +117,19 @@ class SSH_PollerTest_MockData(unittest.TestCase):
             'device_type': 'cisco_nxos',
             'parser_mode': 'fsm',
             'precommands': '',
+            'interval': 0,
             'commands': ['show interface'],
         }
         poller = sshpoller.SSH_Poller(task)
         mock_output = open(os.path.join('mockssh', 'cisco_show_interface.txt'), 'r').read()
         expected_results = json.loads(open(os.path.join('mockssh', 'cisco_show_interface.json'), 'r').read())
         poller.parse_fsm(mock_output, {'command': 'show interface', 'tag': ''})
-        
+
         # Remove timestamp since it'll never match
         for item in poller.data_list:
             item.pop('timestamp', None)
         for item in expected_results:
-            item.pop('timestamp', None)   
+            item.pop('timestamp', None)
 
         self.assertEqual(json.dumps(poller.data_list), json.dumps(expected_results))
 
@@ -153,18 +146,19 @@ class SSH_PollerTest_MockData(unittest.TestCase):
             'device_type': 'cisco_nxos',
             'parser_mode': 'fsm',
             'precommands': '',
+            'interval': 0,
             'commands': ['show platform software qd info counters'],
         }
         poller = sshpoller.SSH_Poller(task)
         mock_output = open(os.path.join('mockssh', 'cisco_show_platform_software_qd_info_counters.txt'), 'r').read()
         expected_results = json.loads(open(os.path.join('mockssh', 'cisco_show_platform_software_qd_info_counters.json'), 'r').read())
         poller.parse_fsm(mock_output, {'command': 'show platform software qd info counters', 'tag': ''})
-        
+
         # Remove timestamp since it'll never match
         for item in poller.data_list:
             item.pop('timestamp', None)
         for item in expected_results:
-            item.pop('timestamp', None) 
+            item.pop('timestamp', None)
 
         self.assertEqual(json.dumps(poller.data_list), json.dumps(expected_results))
 
@@ -181,6 +175,7 @@ class SSH_PollerTest_MockData(unittest.TestCase):
             'device_type': 'f5_ltm',
             'parser_mode': 'fsm',
             'precommands': '',
+            'interval': 0,
             'commands': ['show sys tmm-info'],
         }
         poller = sshpoller.SSH_Poller(task)
@@ -191,18 +186,19 @@ class SSH_PollerTest_MockData(unittest.TestCase):
 
         # Parse data through TextFSM
         poller.parse_fsm(mock_output, {'command': 'show sys tmm-info', 'tag': ''})
-        
+
         # Remove timestamp since it'll never match
         for item in poller.data_list:
             item.pop('timestamp', None)
         for item in expected_results:
-            item.pop('timestamp', None) 
+            item.pop('timestamp', None)
 
         self.assertEqual(json.dumps(poller.data_list), json.dumps(expected_results))
 
     def test_parse_csv(self):
         """ Test parse_csv() function
         """
+
         # F5 'show sys tmm-info'
         task = {
             'hostname': 'localhost',
@@ -212,6 +208,7 @@ class SSH_PollerTest_MockData(unittest.TestCase):
             'device_type': 'f5_ltm',
             'parser_mode': 'csv',
             'precommands': '',
+            'interval': 0,
             'commands': ['tmctl -c pva_stat'],
         }
         poller = sshpoller.SSH_Poller(task)
@@ -222,18 +219,19 @@ class SSH_PollerTest_MockData(unittest.TestCase):
 
         # Parse CSV data
         poller.parse_csv(mock_output, {'command': 'tmctl -c pva_stat', 'tag': ''})
-        
+
         # Remove timestamp since it'll never match
         for item in poller.data_list:
             item.pop('timestamp', None)
         for item in expected_results:
-            item.pop('timestamp', None) 
+            item.pop('timestamp', None)
 
         self.assertEqual(json.dumps(poller.data_list), json.dumps(expected_results))
 
     def test_output_influxdb(self):
         """ Test output_influxdb()
         """
+
         task = {
             'hostname': 'localhost',
             'username': 'test',
@@ -242,13 +240,14 @@ class SSH_PollerTest_MockData(unittest.TestCase):
             'device_type': 'cisco_nxos',
             'parser_mode': 'fsm',
             'precommands': '',
+            'interval': 0,
             'commands': ['show interface:intf_name'],
         }
         poller = sshpoller.SSH_Poller(task)
 
         # Generate a random name for our database
         poller.db_name = 'testsshpoller_%s' % ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
-        
+
         # Create client and connect to the database
         client = InfluxDBClient(host='127.0.0.1', port=poller.db_port, username=poller.db_user, password=poller.db_password)
         client.create_database(poller.db_name)
@@ -257,7 +256,7 @@ class SSH_PollerTest_MockData(unittest.TestCase):
         poller.data_list = json.loads(open(os.path.join('mockssh', 'cisco_show_interface_tag.json'), 'r').read())
 
         # Write data to InfluxDB
-        poller.output_influxdb()        
+        poller.output_influxdb()
 
         # Query database
         query_results = client.query('select * from "show interface"', database=poller.db_name)
@@ -270,10 +269,11 @@ class SSH_PollerTest_MockData(unittest.TestCase):
 
         self.assertEqual(query_results.raw, expected_results)
 
+unittest.skip
 class SSH_PollerTest_MockSSH(unittest.TestCase):
     def setUp(self):
         pass
-    
+
     def tearDown(self):
         pass
 
@@ -294,6 +294,7 @@ class SSH_PollerTest_MockSSH(unittest.TestCase):
             'device_type': 'cisco_nxos',
             'parser_mode': 'fsm',
             'precommands': '',
+            'interval': 0,
             'commands': ['show interface:intf_name'],
         }
         poller = sshpoller.SSH_Poller(task)
@@ -304,19 +305,25 @@ class SSH_PollerTest_MockSSH(unittest.TestCase):
 
         # Generate a random name for our database
         poller.db_name = 'testsshpoller_%s' % ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
-        
+
         # Create client and connect to the database
         client = InfluxDBClient(host='127.0.0.1', port=poller.db_port, username=poller.db_user, password=poller.db_password)
         client.create_database(poller.db_name)
 
         # Write data to InfluxDB
-        poller.output_influxdb()        
+        poller.output_influxdb()
 
         # Query database
         query_results = client.query('select * from "show interface"', database=poller.db_name)
 
         # Fetch expected results
         expected_results = json.loads(open(os.path.join('mockssh', 'cisco_show_interface_influx.json'), 'r').read())
+
+        # Remove timestamps (the ones from the fixtures won't match the one we just wrote to the DB)
+        for i in expected_results['series'][0]['values']:
+            i[0] = ''
+        for i in query_results.raw['series'][0]['values']:
+            i[0] = ''
 
         # Clean up
         client.drop_database(poller.db_name)

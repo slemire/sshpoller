@@ -24,11 +24,9 @@ from influxdb import InfluxDBClient
 
 CSV_DELIMITER = ','
 
-# TESTFSM config settings
+# TEXTFSM config settings
 index_file = 'index'
 template_dir = 'templates'
-
-
 
 
 class SSH_Poller:
@@ -41,18 +39,6 @@ class SSH_Poller:
     db_user = 'root'
     db_password = 'root'
 
-    hostname = ''
-    port = 22
-    username = ''
-    password = ''
-    command_list = []
-    precommand_list = []
-    data_list = []
-    prompt = ''
-    parser_mode = ''
-    interval = ''
-    sock = ConnectHandler
-
     def __init__(self, task):
         self.data_list = []
         self.hostname = task['hostname']
@@ -61,7 +47,11 @@ class SSH_Poller:
         self.password = task['password']
         self.device_type = task['device_type']
         self.parser_mode = task['parser_mode']
+        self.command_list = []
         self.precommand_list = task['precommands']
+        self.interval = task['interval']
+        self.prompt = ''
+        self.sock = ConnectHandler
 
         for command in task['commands']:
             # Command doesn't contain tags attribute
@@ -370,7 +360,7 @@ def main(args, loglevel):
 
 if __name__ == '__main__':
 
-    # Setup parser    
+    # Setup parser
     parser = argparse.ArgumentParser(
         description="Screen scrapping poller with JSON & InfluxDB output",
         epilog="As an alternative to the commandline, params can be placed in a file, one per line, and specified on the commandline like '%(prog)s @params.conf'.",
