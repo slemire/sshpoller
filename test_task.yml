@@ -1,0 +1,11 @@
+---
+-
+  device_name: localhost
+  port: 9999
+  device_type: cisco_nxos
+  parse_mode: fsm
+  post_login_commands:
+  commands:
+    - show version
+    - show interface:intf_name
+
