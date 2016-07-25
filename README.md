@@ -73,7 +73,7 @@ This is a Python SSH screen scrapper that parses the output of commands sent to 
 
 2. Parse CSV command output from an F5 load-balancer every 5 minutes and and write the data in InfluxDB. Some commands on F5 load-balancers support csv output so we don't need to craft a TextFSM template for it. In this example we'll pass a precommand argument to start a bash shell before we issue the command to be parsed.
 
-    ```./sshpoller.py -H <hostname/ip> -m influx -u <username> -p <password> -c "tmctl -c -d blade tmm/tcp4" -C "bash" -d f5_ltm -P csv```
+    ```./sshpoller.py -H <hostname/ip> -m influx -u <username> -p <password> -i 300 -c "tmctl -c -d blade tmm/tcp4" -C "bash" -d f5_ltm -P csv```
 
 3. To send multiple commands to the same device, you can create a YAML and put a series of commands.
 
