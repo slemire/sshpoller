@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+import sys
+
 import MockSSH
 
 fixture = {}
@@ -45,6 +48,10 @@ cmd_f5_tmctl = MockSSH.ArgumentValidatingCommand(
      *[])
 
 def mock_cisco():
+    # Redirect stdout to null
+    f = open(os.devnull, 'w')
+    sys.stdout = f
+
     commands = [cmd_cisco_show]
     users = {'test': 'test'}
     MockSSH.runServer(commands,
@@ -54,6 +61,10 @@ def mock_cisco():
                       **users)
 
 def mock_f5():
+    # Redirect stdout to null
+    f = open(os.devnull, 'w')
+    sys.stdout = f
+
     commands = [cmd_f5_bash, cmd_f5_tmctl, cmd_f5_show]
     users = {'test': 'test'}
     MockSSH.runServer(commands,

@@ -28,7 +28,12 @@ from influxdb import InfluxDBClient
 index_file = 'index'
 template_dir = 'templates'
 
-class SSH_PollerTest(unittest.TestCase):
+class SSH_PollerTest_Basic(unittest.TestCase):
+    def setUp(self):
+        pass
+    
+    def tearDown(self):
+        pass
 
     def test_quotes_in_str(self):
         """ Test quotes_in_str()
@@ -63,10 +68,26 @@ class SSH_PollerTest(unittest.TestCase):
         input_queue.put(task)
         self.assertFalse(sshpoller.worker(input_queue, output_queue))
 
-    def test_parse_fsm(self):
+class SSH_PollerTest_MockData(unittest.TestCase):
+    def setUp(self):
+        pass
+    
+    def tearDown(self):
+        try:
+            for name in dir(sshpoller.SSH_Poller):
+                try:
+                    t = getattr(sshpoller.SSH_Poller, name)
+                    print t
+                    if 'sshpoller' in t:
+                        delattr(sshpoller.SSH_Poller, name)
+                except:
+                    pass
+        except:
+            pass
+
+    def test_parse_fsm_cisco_show_version(self):
         """ Test parse_fsm() function
         """
-
         # Cisco 'show version'
         task = {
             'hostname': 'localhost',
@@ -90,6 +111,10 @@ class SSH_PollerTest(unittest.TestCase):
             item.pop('timestamp', None)    
 
         self.assertEqual(json.dumps(poller.data_list), json.dumps(expected_results))
+
+    def test_parse_fsm_cisco_show_interface(self):
+        """ Test parse_fsm() function
+        """
 
         # Cisco 'show interface'
         task = {
@@ -115,6 +140,10 @@ class SSH_PollerTest(unittest.TestCase):
 
         self.assertEqual(json.dumps(poller.data_list), json.dumps(expected_results))
 
+    def test_parse_fsm_cisco_show_platform(self):
+        """ Test parse_fsm() function
+        """
+
         # Cisco 'show platform software qd info counters'
         task = {
             'hostname': 'localhost',
@@ -138,6 +167,10 @@ class SSH_PollerTest(unittest.TestCase):
             item.pop('timestamp', None) 
 
         self.assertEqual(json.dumps(poller.data_list), json.dumps(expected_results))
+
+    def test_parse_fsm_f5_show_sys(self):
+        """ Test parse_fsm() function
+        """
 
         # F5 'show sys tmm-info'
         task = {
@@ -232,10 +265,66 @@ class SSH_PollerTest(unittest.TestCase):
         # Fetch expected results
         expected_results = json.loads(open(os.path.join('mockssh', 'cisco_show_interface_influx.json'), 'r').read())
 
+        # Clean up
+        client.drop_database(poller.db_name)
+
         self.assertEqual(query_results.raw, expected_results)
+
+class SSH_PollerTest_MockSSH(unittest.TestCase):
+    def setUp(self):
+        pass
+    
+    def tearDown(self):
+        pass
+
+    def test_ssh_poller(self):
+        """ Test real SSH connection to the server
+        """
+
+        # Spawn mock SSH server process
+        p = Process(target=mock_cisco)
+        p.start()
+        sleep(1)
+
+        task = {
+            'hostname': 'localhost',
+            'username': 'test',
+            'password': 'test',
+            'port': 9999,
+            'device_type': 'cisco_nxos',
+            'parser_mode': 'fsm',
+            'precommands': '',
+            'commands': ['show interface:intf_name'],
+        }
+        poller = sshpoller.SSH_Poller(task)
+
+        # Connect to the SSH and send the command
+        poller.connect()
+        poller.send_commands()
+
+        # Generate a random name for our database
+        poller.db_name = 'testsshpoller_%s' % ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+        
+        # Create client and connect to the database
+        client = InfluxDBClient(host='127.0.0.1', port=poller.db_port, username=poller.db_user, password=poller.db_password)
+        client.create_database(poller.db_name)
+
+        # Write data to InfluxDB
+        poller.output_influxdb()        
+
+        # Query database
+        query_results = client.query('select * from "show interface"', database=poller.db_name)
+
+        # Fetch expected results
+        expected_results = json.loads(open(os.path.join('mockssh', 'cisco_show_interface_influx.json'), 'r').read())
 
         # Clean up
         client.drop_database(poller.db_name)
+
+        # Kill server process
+        p.terminate()
+
+        self.assertEqual(query_results.raw, expected_results)
 
 if __name__ == '__main__':
     unittest.main()
