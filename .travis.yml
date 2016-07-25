@@ -10,7 +10,7 @@ install:
   - cd textfsm
   - python setup.py install
   - cd ..
-  - wget --no-check-certificate https://dl.influxdata.com/influxdb/releases/influxdb_0.13.0_amd64.deb
+  - curl -O https://dl.influxdata.com/influxdb/releases/influxdb_0.13.0_amd64.deb
   - dpkg -i influxdb_0.13.0_amd64.deb
   - service influxdb start
 
