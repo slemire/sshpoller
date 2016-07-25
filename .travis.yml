@@ -11,8 +11,8 @@ install:
   - python setup.py install
   - cd ..
   - curl -O https://dl.influxdata.com/influxdb/releases/influxdb_0.13.0_amd64.deb
-  - dpkg -i influxdb_0.13.0_amd64.deb
-  - service influxdb start
+  - sudo dpkg -i influxdb_0.13.0_amd64.deb
+  - sudo service influxdb start
 
 script:
   - coverage run test_sshpoller.py
@@ -20,7 +20,7 @@ script:
 notifications:
   email: false
 
-sudo: false
+sudo: required
 
 after_success:
   coveralls
